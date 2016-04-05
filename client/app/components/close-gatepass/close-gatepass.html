@@ -1,0 +1,87 @@
+<!-- close gatepass start here -->
+
+<div layout="row">
+    <div flex="100" class="ptn-info-grid">
+        <div class="card_wrap">
+            <md-card class="layout-padding c_shadow_none  listblock_dtl">
+                <div layout="row">
+                    <div layout="row" layout-margin layout-fill class="md-block gd1_left listblock_dtl1">
+                        <div flex="100">
+                            <div class="input_group ">
+                                <label for="vehical_no "><i class="ion-android-bus "></i>vehicle No :</label>
+                                <p>{{ vm.gatepass.vehicle }}</p>
+                            </div>
+                            <div class="input_group ">
+                                <label for="driver "><i class="ion-android-person "></i>Driver :</label>
+                                <p>DriverName</p>
+                                <p>{{ vm.gatepass.driver }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="row" layout-margin layout-fill class="list_block border-left pd_l40">
+                        <ul>
+                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
+                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
+                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
+                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
+                        </ul>
+                    </div>
+                    <div layout="row" layout-margin layout-fill class="list_block border-left pd_l40">
+                        <ul>
+                            <li>FC19 - 10</li>
+                            <li>FC19 - 10</li>
+                            <li>FC19 - 10</li>
+                            <li>FC19 - 10</li>
+                        </ul>
+                    </div>
+
+                    <!-- good details  block end -->
+                </div>
+            </md-card>
+            <md-card class="layout-padding c_shadow_none  listblock_dtl" ng-hide="!mc.isCollapsed">
+                <div layout="row">
+                    <div layout="row" layout-margin layout-fill class="md-block gd1_left listblock_dtl1">
+                        <div flex="100">
+                            <div class="input_group ">
+                                <label for="vehical_no "><i class="ion-android-bus "></i>Vehicle No :</label>
+                                <p>PB 10 12354</p>
+                            </div>
+                            <div class="input_group ">
+                                <label for="driver "><i class="ion-android-person "></i>Driver :</label>
+                                <p>DriverName</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="row" layout-margin layout-fill class="list_block border-left pd_l40">
+                        <ul>
+                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
+                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
+                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
+                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
+                        </ul>
+                    </div>
+                    <div layout="row" layout-margin layout-fill class="list_block border-left pd_l40">
+                        <ul>
+                            <li>FC19 - 10</li>
+                            <li>FC19 - 10</li>
+                            <li>FC19 - 10</li>
+                            <li>FC19 - 10</li>
+                        </ul>
+                    </div>
+
+                    <!-- good details  block end -->
+                </div>
+            </md-card>
+            <!-- view more block -->
+            <md-card class="c_shadow_none viwe_more_card" ng-click="mc.isCollapsed=!mc.isCollapsed">
+                <!-- submit button -->
+                <div class="view_more">
+                    <p>View More</p>
+                    <i class="ion-android-add-circle"></i>
+
+                </div>
+            </md-card>
+
+        </div>
+    </div>
+</div>

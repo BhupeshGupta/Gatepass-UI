@@ -1,0 +1,26 @@
+pump-form {
+    .input_group {
+        width: 50%;
+        margin-right: 5px;
+        &.full_width {
+            width: 100%;
+            label {
+                width: 20%;
+            }
+            input {
+                float: left;
+                width: 240px!important;
+            }
+        }
+        input {
+            margin-bottom: 0 !important;
+            width: 55% !important;
+            padding: 0 5px;
+        }
+        label {
+            width: 65px;
+            font-size: 13px;
+            float: left;
+        }
+    }
+}

@@ -235,7 +235,7 @@ md-item {
 
 .input_group input {
   border: 1px solid #e1e1e1;
-  padding: 0px 0px 0 10px;
+  padding: 0px 10px;
   height: 30px;
   font-size: 13px;
   margin-top: 0 !important; }
@@ -354,9 +354,6 @@ open-gatepass .input_group .full-width {
 open-gatepass .label_96 label {
   width: 96px !important; }
 
-open-gatepass .pd_l20 {
-  padding-left: 20px !important; }
-
 .View_More {
   content: "View More"; }
 
@@ -375,13 +372,3 @@ input[type=number]::-webkit-outer-spin-button {
 .col-3 {
   width: 33.3%;
   float: left; }
-
-.collaps.item_detail {
-  height: 225px !important; }
-
-.ng-isolate-scope {
-  padding: 0; }
-
-input[type="date"]::-webkit-calendar-picker-indicator,
-input[type="date"]::-webkit-inner-spin-button {
-  display: none; }

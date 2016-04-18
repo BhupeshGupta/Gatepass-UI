@@ -5,11 +5,11 @@ import './new-voucher.scss';
 let newVoucherComponent = {
     restrict: 'E',
     bindings: {
-        voucherSubmit: '&'
+        onCreation: '&'
     },
     template,
     controller: NewVoucherController,
-    controllerAs: 'mc'
+    controllerAs: 'nvc'
 };
 
 export default newVoucherComponent;

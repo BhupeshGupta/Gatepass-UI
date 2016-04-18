@@ -21,6 +21,9 @@
             font-size: 12px;
             font-weight: 400;
         }
+        p {
+            margin-top: 0px !important;
+        }
     }
     .input_block {
         padding: 5px 10px;
@@ -118,6 +121,12 @@
             width: 75px!important;
         }
     }
+    .input_group {
+        margin-bottom: 10px;
+        p {
+            margin: 0 !important;
+        }
+    }
 }
 .expanse_conatiner {
     position: relative;
@@ -158,4 +167,18 @@ open-gatepass {
 }
 .full_width label {
     width: 65px;
+}
+.item_detail {
+    height: 125px;
+    overflow-y: scroll;
+    width: 100%;
+    strong {
+        display: block;
+        margin: 2px 0;
+    }
+}
+li {
+    h4 {
+        margin: 0;
+    }
 }

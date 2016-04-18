@@ -27,9 +27,15 @@ h4 {
 *:focus {
     outline: none;
 }
+p {
+    margin-top: 9px;
+}
 
 /*================= Extsassssend style start =============== */
 
+.red_text {
+    color: #ff0000;
+}
 .black {
     background: #424242 !important;
 }
@@ -88,6 +94,9 @@ md-card {
         input {
             border: 1px solid #e1e1e1;
             padding: 5px 10px;
+        }
+        p {
+            margin-top: 9px !important;
         }
     }
     label {
@@ -265,6 +274,7 @@ div[layout="column"] {
             display: inline-block;
             font-size: 14px;
             color: #a6a5a5;
+            margin-top: 5px !important;
         }
     }
 }
@@ -286,9 +296,10 @@ md-item {
 .input_group {
     input {
         border: 1px solid #e1e1e1;
-        padding: 0px 10px;
+        padding: 0px 0px 0 10px;
         height: 30px;
         font-size: 13px;
+        margin-top: 0 !important;
     }
     p {
         display: inline-block;
@@ -432,7 +443,36 @@ open-gatepass {
             width: 96px !important;
         }
     }
+    .pd_l20 {
+        padding-left: 20px !important;
+    }
 }
 .View_More {
     content: "View More";
+}
+.bold {
+    font-weight: bold !important;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+.col-3 {
+    width: 33.3%;
+    float: left;
+}
+.collaps.item_detail {
+    height: 225px !important
+}
+.ng-isolate-scope {
+    padding: 0;
+}
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-inner-spin-button {
+    display: none;
 }

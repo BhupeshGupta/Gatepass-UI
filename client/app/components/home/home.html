@@ -24,11 +24,12 @@
               <!-- vocher1 start here -->
               <div class="md-toolbar-tools main_heading">
                 <h1>New Voucher</h1> </div>
+              <!-- new Voucher list start here -->
               <md-item>
                 <div layout="row">
                   <div flex-gt-sm="68" flex-gt-md="70" class="ptn-info-grid">
                     <div class="card_wrap">
-                      <new-voucher ng-attr-on-creation="mc.p(gatepass)"></new-voucher>
+                      <new-voucher ng-attr-on-creation="mc.addOpenGatepass(gatepass)"></new-voucher>
                     </div>
                   </div>
                   <!-- notifications block start here -->
@@ -47,6 +48,7 @@
                   <!-- notifications block end here -->
                 </div>
               </md-item>
+              <!-- new voucher list end here -->
               <!-- vocher1 start here  -->
               <!-- open gatepass start here -->
               <md-item class="opengatepass list_contain" init="mc.coll">
@@ -54,8 +56,8 @@
                   <h1>Open Gatepass</h1> </div>
                 <div layout="row">
                   <div flex="100" class="ptn-info-grid">
-                    <div class="card_wrap" ng-repeat="v in mc.v">
-                      <open-gatepass gatepass="v"> </open-gatepass>
+                    <div class="card_wrap" ng-repeat="gatepass in mc.openGatepassList track by $index">
+                      <open-gatepass gatepass="gatepass" disabled="false" on-submit="mc.addClosedGatepass(gatepass); mc.removeOpenGatepass($index)"></open-gatepass>
                     </div>
                   </div>
                 </div>
@@ -68,8 +70,9 @@
                   <h1>Close</h1> </div>
                 <div layout="row">
                   <div flex="100" class="ptn-info-grid">
-                    <close-gatepass></close-gatepass>
-                    <close-gatepass></close-gatepass>
+                    <div class="close_gatepass" ng-repeat="gatepass in mc.closedGatepassList track by $index">
+                      <open-gatepass gatepass="gatepass" disabled="true"></open-gatepass>
+                    </div>
                   </div>
                 </div>
               </md-item>

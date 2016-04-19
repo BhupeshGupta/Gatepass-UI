@@ -9,7 +9,7 @@ let closeGatepassComponent = {
     },
     template,
     CloseGatepassController,
-    controllerAs: 'vm'
+    controllerAs: 'cgc'
 };
 
 export default closeGatepassComponent;

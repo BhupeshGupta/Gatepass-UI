@@ -9,7 +9,7 @@ import pumpView from './pump-view/pump-view';
 
 let componentModule = angular.module('app.components', [
     openGatepass.name,
-     newVoucher.name,
+    newVoucher.name,
     closeGatepass.name,
     expense.name,
     pumpForm.name,

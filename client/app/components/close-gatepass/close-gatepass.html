@@ -1,87 +1,78 @@
 <!-- close gatepass start here -->
-
 <div layout="row">
-    <div flex="100" class="ptn-info-grid">
-        <div class="card_wrap">
-            <md-card class="layout-padding c_shadow_none  listblock_dtl">
-                <div layout="row">
-                    <div layout="row" layout-margin layout-fill class="md-block gd1_left listblock_dtl1">
-                        <div flex="100">
-                            <div class="input_group ">
-                                <label for="vehical_no "><i class="ion-android-bus "></i>vehicle No :</label>
-                                <p>{{ vm.gatepass.vehicle }}</p>
-                            </div>
-                            <div class="input_group ">
-                                <label for="driver "><i class="ion-android-person "></i>Driver :</label>
-                                <p>DriverName</p>
-                                <p>{{ vm.gatepass.driver }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div layout="row" layout-margin layout-fill class="list_block border-left pd_l40">
-                        <ul>
-                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
-                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
-                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
-                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
-                        </ul>
-                    </div>
-                    <div layout="row" layout-margin layout-fill class="list_block border-left pd_l40">
-                        <ul>
-                            <li>FC19 - 10</li>
-                            <li>FC19 - 10</li>
-                            <li>FC19 - 10</li>
-                            <li>FC19 - 10</li>
-                        </ul>
-                    </div>
-
-                    <!-- good details  block end -->
+  <div flex="100" class="ptn-info-grid">
+    <div class="card_wrap">
+      <md-card class="layout-padding c_shadow_none  listblock_dtl">
+        <div layout="row">
+          <!-- close gatepass  col1 start here -->
+          <div class="column col-3" flex="33">
+            <div layout="row" layout-margin layout-fill class="md-block gd1_left listblock_dtl1">
+              <div flex="100">
+                <div class="input_group ">
+                  <label for="vehical_no "><i class="ion-android-bus "></i>Vehicle No :</label>
+                  <p>{{ cgs.gatepass.vehicle }}</p>
                 </div>
-            </md-card>
-            <md-card class="layout-padding c_shadow_none  listblock_dtl" ng-hide="!mc.isCollapsed">
-                <div layout="row">
-                    <div layout="row" layout-margin layout-fill class="md-block gd1_left listblock_dtl1">
-                        <div flex="100">
-                            <div class="input_group ">
-                                <label for="vehical_no "><i class="ion-android-bus "></i>Vehicle No :</label>
-                                <p>PB 10 12354</p>
-                            </div>
-                            <div class="input_group ">
-                                <label for="driver "><i class="ion-android-person "></i>Driver :</label>
-                                <p>DriverName</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div layout="row" layout-margin layout-fill class="list_block border-left pd_l40">
-                        <ul>
-                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
-                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
-                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
-                            <li>20145 - FC19 (6) / RC19( 6) - GoodWill allows</li>
-                        </ul>
-                    </div>
-                    <div layout="row" layout-margin layout-fill class="list_block border-left pd_l40">
-                        <ul>
-                            <li>FC19 - 10</li>
-                            <li>FC19 - 10</li>
-                            <li>FC19 - 10</li>
-                            <li>FC19 - 10</li>
-                        </ul>
-                    </div>
-
-                    <!-- good details  block end -->
+                <div class="input_group ">
+                  <label for="driver "><i class="ion-android-person "></i>Driver :</label>
+                  <p>{{ cgs.gatepass.driver }}</p>
                 </div>
-            </md-card>
-            <!-- view more block -->
-            <md-card class="c_shadow_none viwe_more_card" ng-click="mc.isCollapsed=!mc.isCollapsed">
-                <!-- submit button -->
-                <div class="view_more">
-                    <p>View More</p>
-                    <i class="ion-android-add-circle"></i>
-
-                </div>
-            </md-card>
-
+              </div>
+            </div>
+            <!-- pump detail start here -->
+            <div layout="row" ng-hide="!mc.isCollapsed" class="opengatepass_row2 pd_l18">
+              <pump-view gatepass="vm.gatepass"></pump-view>
+            </div>
+          </div>
+          <!-- close gatepass  col1 end here -->
+          <!-- close gatepass col2 start here -->
+          <div class="column col-3">
+            <div layout="row" layout-margin layout-fill class="list_block border-left pd_l20">
+              <ul class="item_detail" ng-class="{collaps: editorEnabled}">
+                <li ng-repeat="newItemesDetail in vm.itemDetails"><strong>{{newItemesDetail.customer}}</strong> {{newItemesDetail.name}} &nbsp - &nbsp {{newItemesDetail.item_delivered}}({{newItemesDetail.delivered_quantity}}) &nbsp/&nbsp {{newItemesDetail.item_received}}({{newItemesDetail.received_quantity}})</li>
+              </ul>
+            </div>
+            <div layout="row" layout-margin layout-fill class="list_block border-left pd_l25"></div>
+          </div>
+          <!-- close gatepass col2 start here -->
+          <!-- close gatepass col3 start here -->
+          <div class="column col-3 pd_l25">
+            <div class="row" style="display:inline-block">
+              <table align="left">
+                <tr ng-repeat="(item, qty) in vm.closingStock" style="text-align:right;" class="pd_l25">
+                  <td>{{item}}</td>
+                  <td>&nbsp; &nbsp;&nbsp; &nbsp;</td>
+                  <td>{{cgc.openningStock[item] || 0}}</td>
+                  <td>&nbsp; &nbsp;</td>
+                  <td>- </td>
+                  <td>&nbsp; &nbsp;&nbsp; &nbsp;</td>
+                  <td> {{cgc.grTotal.item_delivered[item] || 0}}</td>
+                  <td>&nbsp; &nbsp;&nbsp; &nbsp;</td>
+                  <td> + </td>
+                  <td>&nbsp; &nbsp;&nbsp; &nbsp;</td>
+                  <td>{{cgc.grTotal.item_received[item] || 0}}</td>
+                  <td>&nbsp; &nbsp;&nbsp; &nbsp;</td>
+                  <td> = </td>
+                  <td>&nbsp; &nbsp;&nbsp; &nbsp;</td>
+                  <td><span ng-class=" qty < 0? 'red_text bold':'' ">{{qty}}</span></td>
+                </tr>
+              </table>
+            </div>
+            <div layout="row" layout-margin layout-fill class="list_block  pd_l20 mat_list"> </div>
+            <div layout="row" layout-fill class="list_block  pd_l20 exapand_block">
+              <div layout="row" ng-hide="!mc.isCollapsed" class="opengatepass_row2">
+                <pump-form></pump-form>
+              </div>
+            </div>
+          </div>
+          <!-- close gatepass col3 end here -->
         </div>
+      </md-card>
+      <!-- view more block -->
+      <md-card class="c_shadow_none viwe_more_card" ng-click="mc.isCollapsed=!mc.isCollapsed">
+        <!-- submit button -->
+        <div class="view_more">
+          <p>View More</p> <i class="ion-android-add-circle"></i> </div>
+      </md-card>
     </div>
+  </div>
 </div>

@@ -6,7 +6,9 @@ import './open-gatepass.scss';
 let openGatepassComponent = {
     restrict: 'E',
     bindings: {
-        gatepass: '='
+        gatepass: '=',
+        disabled: '=',
+        onSubmit: '&'
     },
     template,
     controller: OpenGatepassController,

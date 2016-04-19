@@ -5,11 +5,11 @@ import './pump-view.scss';
 let pumpViewComponent = {
     restrict: 'E',
     bindings: {
-        pumpView: '='
+        gatepass: '='
     },
     template,
     controller: PumpViewController,
-    controllerAs: 'pfc'
+    controllerAs: 'pvc'
 };
 
 export default pumpViewComponent;

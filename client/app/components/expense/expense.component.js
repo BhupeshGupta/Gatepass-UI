@@ -9,7 +9,7 @@ let expenseComponent = {
     },
     template,
     controller: ExpenseController,
-    controllerAs: 'vm'
+    controllerAs: 'ec'
 };
 
 export default expenseComponent;

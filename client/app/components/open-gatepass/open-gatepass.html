@@ -39,19 +39,39 @@
         <div class="column col-3">
             <div layout="row" layout-margin layout-fill class="list_block border-left pd_l20">
                 <ul class="item_detail" ng-class="{collaps: editorEnabled}">
-                    <li>
-                        <h4>{{vm.grTotal}}</h4>
-                    </li>
                     <li ng-repeat="newItemesDetail in vm.itemDetails"><strong>{{newItemesDetail.customer}}</strong> {{newItemesDetail.name}} &nbsp - &nbsp {{newItemesDetail.item_delivered}}({{newItemesDetail.delivered_quantity}}) &nbsp/&nbsp {{newItemesDetail.item_received}}({{newItemesDetail.received_quantity}})</li>
                 </ul>
             </div>
             <div layout="row" layout-margin layout-fill class="list_block border-left pd_l25"></div>
         </div>
         <div class="column col-3">
+            <div class="row">
+                <table align="center">
+                    <!--
+<tr>
+    <th>{{vm.grTotal.item_delivered['FC47.5']}}</th>
+    <th>{{vm.grTotal.item_received}}</th>
+</tr>
+-->
+                    <tr ng-repeat="(item, qty) in vm.closingStock" style="text-align:right;">
+                        <td>{{item}}</td>
+                        <th>&nbsp; &nbsp;</th>
+                        <th>&nbsp; &nbsp;</th>
+                        <th>{{vm.openningStock[item] || 0}}</th>
+                        <th>&nbsp; &nbsp;</th>
+                        <th>- </th>
+                        <th> {{vm.grTotal.item_delivered[item] || 0}}</th>
+                        <th> + {{vm.grTotal.item_received[item] || 0}}</th>
+                        <td> = <span ng-class=" qty < 0? 'red_text bold':'' ">{{qty}}</td>
+                    </tr>
+                </table>
+            </div>
             <div layout="row" layout-margin layout-fill class="list_block  pd_l20 mat_list">
+<!--
                 <ul>
-                    <li ng-repeat="(item, qty) in vm.closingStock">{{item}}: <span ng-class=" qty < 0? 'red_text bold':'' ">{{qty}}</span></li>
-                </ul>
+    <li ng-repeat="(item, qty) in vm.closingStock">{{item}}: <span ng-class=" qty < 0? 'red_text bold':'' ">{{qty}}</span></li>
+                            </ul>
+                            -->
             </div>
             <div layout="row" layout-fill class="list_block  pd_l20 exapand_block">
                 <div layout="row" ng-hide="!mc.isCollapsed" class="opengatepass_row2">

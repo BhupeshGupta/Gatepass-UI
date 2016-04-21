@@ -2,38 +2,37 @@
     <div layout="row">
         <div class="input_group full_width">
             <label class="flex-17" for="Pump">Pump</label>
-            <input type="text" ng-model="pfc.gatepass.fuel_pump">
+            <!--            <input type="text" ng-model="pfc.gatepass.fuel_pump">-->
+            <md-autocomplete md-selected-item="pfc.gatepass.fuel_pump" md-item-text="item.value" md-items="item in pfc.searchPump(ctrl.txtPump)" md-search-text="ctrl.txtPump" md-min-length="0" placeholder="Select vehicle">
+                <md-item-template>
+                    <span md-highlight-text="ctrl.txtPump" md-highlight-flags="^i">{{item.value}}</span>
+                </md-item-template>
+                <md-not-found>
+                    No vehicle matching "{{ctrl.txtPump}}" were found.
+                </md-not-found>
+            </md-autocomplete>
         </div>
     </div>
     <div layout="row">
-        <div class="input_group full_width">
+        <div class="input_group">
             <label class="" for="Fuel Id">Fuel Id </label>
             <input type="text" ng-model="pfc.gatepass.fuel_slip_id">
         </div>
-        <!-- good details  block end -->
-    </div>
-    <div layout="row">
-        <div layout="row" layout-sm="column">
-            <div class="input_group " id=" popupContainer ">
-                <label class="" for="expense">Expense </label>
-                <input type="text" ng-click="showAdvanced()" >
-            </div>
-            <div class="input_group">
-                <label for="Date ">Date</label>
-                <input type="date" class="ng-pristine ng-valid md-input ng-touched ">
-            </div>
+        <div class="input_group " id=" popupContainer ">
+            <label class="" for="expense">Expense </label>
+            <input type="text" ng-click="pfc.showAdvanced($event)">
         </div>
-        <!-- good details  block end -->
     </div>
-    <div layout="row ">
-        <div layout="row " layout-sm="column ">
-            <div class="input_group ">
-                <label class="" for="quantity ">Quantity</label>
-                <input ng-model="pfc.gatepass.fuel_quantity" type="number"> </div>
-            <div class="input_group ">
-                <label for="mobil_oil ">Mobil oil</label>
-                <input type="number" ng-model="pfc.gatepass.mobiloil"> </div>
-        </div>
-        <!-- good details  block end -->
+    <!-- good details  block end -->
+</div>
+<div layout="row ">
+    <div class="input_group ">
+        <label class="" for="quantity ">Quantity</label>
+        <input ng-model="pfc.gatepass.fuel_quantity" type="number">
     </div>
+    <div class="input_group ">
+        <label for="mobil_oil ">Mobil oil</label>
+        <input type="number" ng-model="pfc.gatepass.mobiloil">
+    </div>
+    <!-- good details  block end -->
 </div>

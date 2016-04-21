@@ -127,8 +127,8 @@ md-card {
 div[layout="column"] md-toolbar {
   position: relative; }
   div[layout="column"] md-toolbar .toolbar_left {
-    position: absolute;
-    top: 15px; }
+    position: relative;
+    top: 0px; }
   div[layout="column"] md-toolbar md-datepicker {
     background: none; }
     div[layout="column"] md-toolbar md-datepicker .md-datepicker-input-container {
@@ -140,8 +140,25 @@ div[layout="column"] md-toolbar {
         min-width: 95px !important;
         height: 31px; }
 
+.warehouse {
+  float: left;
+  display: inline-block; }
+  .warehouse p {
+    float: left;
+    margin: 5px 0 0 10px;
+    font-size: 18px; }
+    .warehouse p i {
+      margin-right: 10px;
+      font-size: 20px; }
+  .warehouse md-autocomplete {
+    float: left;
+    margin-left: 15px;
+    background: none;
+    border: 1px solid #ccc;
+    width: 280px; }
+
 .md-toolbar-tools h3 {
-  margin: 8px 5px 0 0px;
+  margin: 12px 5px 0 0px;
   border-right: 2px solid #fff;
   float: left;
   padding-right: 10px;
@@ -149,10 +166,10 @@ div[layout="column"] md-toolbar {
   font-weight: 300; }
 
 .md-toolbar-tools .date_picker {
-  width: 100%;
+  width: 160px;
   float: left;
   margin-left: 10px;
-  width: 400px; }
+  margin-top: 2px; }
   .md-toolbar-tools .date_picker span {
     font-size: 15px; }
 

@@ -1,81 +1,99 @@
 <!-- USING ROW FOR DESKTOP AND COLUMN FOR MOBILE DEVICES -->
 <form ng-submit="voucherSubmit()">
-  <md-card class="c_shadow_none">
-    <!-- submit button -->
-    <div class="submit_button l-grey">
-      <button class="md-button  black" type="button" ng-click="nvc.submit()"><span class="ng-scope">Submit</span>
-        <div class="md-ripple-container"></div>
-      </button>
-    </div>
-  </md-card>
-  <!-- submit button -->
-  <md-card class="layout-padding c_shadow_none wrap_contain new_vocher_block">
-    <div layout="row" layout-sm="column" flex="100" class="detail_block1">
-      <div class="md-block gd1_left pd_t40" flex="50">
-        <div class="input_group">
-          <label for="vehicle_no "><i class="ion-android-bus "></i>vehicle No :</label>
-          <input name="vehicle" ng-model="nvc.gatepass.vehicle"> </div>
-        <div class="input_group ">
-          <label for="driver "><i class="ion-android-person "></i>Driver :</label>
-          <input name="driver" ng-model="nvc.gatepass.driver"> </div>
-      </div>
-      <div class="md-block gd1_right">
-        <h4><i class="ion-settings "></i> Material</h4>
-        <div class="input_block input_50">
-          <div layout="row" layout-sm="column">
-            <div class="input_group ">
-              <label class="flex-35" for="FC19 ">FC19</label>
-              <input placeholder="" type="number" ng-model="nvc.gatepass.items.FC19"> </div>
-            <div class="input_group ">
-              <label class="flex-35" for="FC35">FC35</label>
-              <input placeholder="" type="number" ng-model="nvc.gatepass.items.FC35"> </div>
-          </div>
-          <div layout="row" layout-sm="column">
-            <div class="input_group">
-              <label class=" flex-35 " for="FC47 ">FC47.5</label>
-              <input type="number" ng-model="nvc.gatepass.items.FC47"> </div>
-            <div class="input_group">
-              <label class="flex-35" for="FClot47">FC47.5Lot</label>
-              <input type="number" ng-model="nvc.gatepass.items.FC47_5"> </div>
-          </div>
+    <md-card class="c_shadow_none">
+        <!-- submit button -->
+        <div class="submit_button l-grey">
+            <button class="md-button  black" type="button" ng-click="nvc.submit()"><span class="ng-scope">Submit</span>
+                <div class="md-ripple-container"></div>
+            </button>
         </div>
-      </div>
-    </div>
-    <div layout="row" layout-sm="column" flex="100" class="detail_block2" ng-hide="!nvc.isCollapsed">
-      <div class="gd1_left" flex="50" layout-fill="">
-        <pump-form gatepass="nvc.gatepass"></pump-form>
-      </div>
-      <div class="md-block gd1_right ">
-        <div class="input_block input_50">
-          <div layout="row" layout-sm="column">
-            <div class="input_group ">
-              <label class="flex-35">EC19</label>
-              <input placeholder="" type="number" ng-model="nvc.gatepass.items.EC19"> </div>
-            <div class="input_group ">
-              <label class="flex-35" for="FC35">EC35</label>
-              <input placeholder="" type="number" ng-model="nvc.gatepass.items.EC35"> </div>
-          </div>
-          <div layout="row" layout-sm="column">
-            <div class="input_group">
-              <label class=" flex-35 " for="FC47 ">EC47.5</label>
-              <input type="number" ng-model="nvc.gatepass.items.EC47"> </div>
-            <div class="input_group">
-              <label class="flex-35" for="FClot47">EC47.5Lot</label>
-              <input type="number" ng-model="nvc.gatepass.items.EC47_5"> </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </md-card>
-  <!-- view more block -->
-  <md-card class="c_shadow_none viwe_more_card " ng-click="nvc.isCollapsed=!nvc.isCollapsed " ng-init="ClickToEditCtrl=true ">
+    </md-card>
     <!-- submit button -->
-    <div class=" view_more ">
-      <div ng-hide=" editorEnabled ">
-        <p href="# " ng-click="editorEnabled=!editorEnabled ">View More</p>
-      </div>
-      <div ng-show="editorEnabled ">
-        <p href="# " ng-click="editorEnabled=!editorEnabled ">View Less</p>
-      </div> <i class="icon accordian_icon " ng-class="nvc.isCollapsed ? 'ion-ios-minus-outline' : 'ion-android-add-circle ' "></i> </div>
-  </md-card>
+    <md-card class="layout-padding c_shadow_none wrap_contain new_vocher_block">
+        <div layout="row" layout-sm="column" flex="100" class="detail_block1">
+            <div class="md-block gd1_left pd_t40" flex="50">
+                <div class="input_group">
+                    <label for="vehicle_no "><i class="ion-android-bus "></i>vehicle No :</label>
+                    <!--                    <input name="vehicle" ng-model="nvc.gatepass.vehicle">-->
+                    <md-autocomplete md-selected-item-change="nvc.gatepass.vehicle" md-item-text="item.value" md-items="item in nvc.searchVehicle(ctrl.txtVehicle)" md-search-text="ctrl.txtVehicle" md-min-length="0" placeholder="Select vehicle" md-no-cache="noCacheResults">
+                        <md-item-template>
+                            <span md-highlight-text="ctrl.txtVehicle" md-highlight-flags="^i">{{item.value}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            No vehicle matching "{{ctrl.txtVehicle}}" were found.
+                        </md-not-found>
+                    </md-autocomplete>
+                </div>
+                <div class="input_group ">
+                    <label for="driver "><i class="ion-android-person "></i>Driver :</label>
+                    <md-autocomplete md-selected-item="nvc.gatepass.driver" md-item-text="item.value" md-items="item in nvc.searchDriver(ctrl.txtDriver)" md-search-text="ctrl.txtDriver" md-min-length="0" placeholder="Select driver">
+                        <md-item-template>
+                            <span md-highlight-text="ctrl.txtDriver" md-highlight-flags="^i">{{item.value}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            No Driver matching "{{ctrl.txtDriver}}" were found.
+                        </md-not-found>
+                    </md-autocomplete>
+                    <!--                    <input name="driver" ng-model="nvc.gatepass.driver"> </div>-->
+                </div>
+            </div>
+            <div class="md-block gd1_right">
+                <h4><i class="ion-settings "></i> Material</h4>
+                <div class="input_block input_50">
+                    <div layout="row" layout-sm="column">
+                        <div class="input_group ">
+                            <label class="flex-35" for="FC19 ">FC19</label>
+                            <input placeholder="" type="number" ng-model="nvc.gatepass.items.FC19"> </div>
+                        <div class="input_group ">
+                            <label class="flex-35" for="FC35">FC35</label>
+                            <input placeholder="" type="number" ng-model="nvc.gatepass.items.FC35"> </div>
+                    </div>
+                    <div layout="row" layout-sm="column">
+                        <div class="input_group">
+                            <label class=" flex-35 " for="FC47 ">FC47.5</label>
+                            <input type="number" ng-model="nvc.gatepass.items.FC47"> </div>
+                        <div class="input_group">
+                            <label class="flex-35" for="FClot47">FC47.5Lot</label>
+                            <input type="number" ng-model="nvc.gatepass.items.FC47_5"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div layout="row" layout-sm="column" flex="100" class="detail_block2" ng-hide="!nvc.isCollapsed">
+            <div class="gd1_left" flex="50" layout-fill="">
+                <pump-form gatepass="nvc.gatepass"></pump-form>
+            </div>
+            <div class="md-block gd1_right ">
+                <div class="input_block input_50">
+                    <div layout="row" layout-sm="column">
+                        <div class="input_group ">
+                            <label class="flex-35">EC19</label>
+                            <input placeholder="" type="number" ng-model="nvc.gatepass.items.EC19"> </div>
+                        <div class="input_group ">
+                            <label class="flex-35" for="FC35">EC35</label>
+                            <input placeholder="" type="number" ng-model="nvc.gatepass.items.EC35"> </div>
+                    </div>
+                    <div layout="row" layout-sm="column">
+                        <div class="input_group">
+                            <label class=" flex-35 " for="FC47 ">EC47.5</label>
+                            <input type="number" ng-model="nvc.gatepass.items.EC47"> </div>
+                        <div class="input_group">
+                            <label class="flex-35" for="FClot47">EC47.5Lot</label>
+                            <input type="number" ng-model="nvc.gatepass.items.EC47_5"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-card>
+    <!-- view more block -->
+    <md-card class="c_shadow_none viwe_more_card " ng-click="nvc.isCollapsed=!nvc.isCollapsed " ng-init="ClickToEditCtrl=true ">
+        <!-- submit button -->
+        <div class=" view_more ">
+            <div ng-hide=" editorEnabled ">
+                <p href="# " ng-click="editorEnabled=!editorEnabled ">View More</p>
+            </div>
+            <div ng-show="editorEnabled ">
+                <p href="# " ng-click="editorEnabled=!editorEnabled ">View Less</p>
+            </div> <i class="icon accordian_icon " ng-class="nvc.isCollapsed ? 'ion-ios-minus-outline' : 'ion-android-add-circle ' "></i> </div>
+    </md-card>
 </form>

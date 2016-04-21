@@ -1,6 +1,6 @@
 class ExpenseController {
     constructor() {
-        console.log("hello");
+
     }
 }
 

@@ -1,0 +1,16 @@
+pump-view {
+    width: 100%;
+    .gd1_left {
+        .input_group {
+            float: left;
+            width: 50%;
+            &.label_96 {
+                width: 100%;
+            }
+            label {
+                float: left;
+                width: 60px;
+            }
+        }
+    }
+}

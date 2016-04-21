@@ -22,3 +22,20 @@
         }
     }
 }
+md-autocomplete {
+    float: left;
+    background: none;
+    border: 1px solid #e1e1e1;
+    box-shadow: none;
+    md-autocomplete-wrap {
+        box-shadow: none !important;
+        input {
+            border: 1px solid #e1e1e1;
+            padding: 0 0 0 10px;
+            height: 30px;
+            font-size: 13px;
+            margin-top: 0!important;
+            box-shadow: none;
+        }
+    }
+}

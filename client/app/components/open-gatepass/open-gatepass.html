@@ -1,95 +1,85 @@
 <!-- USING ROW FOR DESKTOP AND COLUMN FOR MOBILE DEVICES -->
 <md-card class="c_shadow_none">
-  <!-- submit button -->
-  <div class="submit_button l-grey">
-    <p>1 </p>
-    <button class=" md-button black" type="button" ng-click="vm.onSubmit()"><span class="ng-scope" ng-disabled="vm.disabled">Submit</span>
-      <div class="md-ripple-container"></div>
-    </button>
-  </div>
+    <!-- submit button -->
+    <div class="submit_button l-grey">
+        <p>1 </p>
+        <button class=" md-button black" type="button" ng-click="vm.onSubmit()"><span class="ng-scope" ng-disabled="vm.disabled">Submit</span>
+            <div class="md-ripple-container"></div>
+        </button>
+    </div>
 </md-card>
 <!-- submit button -->
 <md-card class="layout-padding c_shadow_none  listblock_dtl">
-  <div class="row ">
-    <!-- open gatepass col1 start here -->
-    <div class="column col-3" flex="33">
-      <div layout="row" layout-margin layout-fill class="md-block gd1_left listblock_dtl1">
-        <div>
-          <div class="input_group ">
-            <label for="vehicle_no "><i class="ion-android-bus "></i>vehicle No :</label>
-            <p>{{ vm.gatepass.vehicle }}</p>
-          </div>
-          <div class="input_group ">
-            <label for="driver "><i class="ion-android-person "></i>Driver :</label>
-            <p>{{ vm.gatepass.driver }}</p>
-          </div>
-          <div class="input_group mat_list">
-            <label for="driver "><i class="ion-settings "></i>Material :</label>
-            <p ng-repeat="item in vm.gatepass.items">{{ item.item }}: {{ item.quantity }}</p>
-          </div>
+    <div class="row ">
+        <!-- open gatepass col1 start here -->
+        <div class="column col-3" flex="33">
+            <div layout="row" layout-margin layout-fill class="md-block gd1_left listblock_dtl1">
+                <div>
+                    <div class="input_group ">
+                        <label for="vehicle_no "><i class="ion-android-bus "></i>vehicle No :</label>
+                        <p>{{ vm.gatepass.outGatepass.vehicle }}</p>
+                    </div>
+                    <div class="input_group ">
+                        <label for="driver "><i class="ion-android-person "></i>Driver :</label>
+                        <p>{{ vm.gatepass.outGatepass.driver }}</p>
+                    </div>
+                    <div class="input_group mat_list">
+                        <label for="driver "><i class="ion-settings "></i>Material :</label>
+                        <div class="gatepass_items">
+                            <p ng-repeat="item in vm.gatepass.outGatepass.items">{{ item.item }}: {{ item.quantity }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- pump detail start here -->
+            <div layout="row" ng-hide="!mc.isCollapsed" class="opengatepass_row2">
+                <pump-view gatepass="vm.gatepass.outGatepass"></pump-view>
+            </div>
+            <!-- pump detail end here -->
         </div>
-      </div>
-      <!-- pump detail start here -->
-      <div layout="row" ng-hide="!mc.isCollapsed" class="opengatepass_row2">
-        <pump-view gatepass="vm.gatepass"></pump-view>
-      </div>
-      <!-- pump detail end here -->
-    </div>
-    <!-- open gate col2 start here -->
-    <div class="column col-3">
-      <div layout="row" layout-margin layout-fill class="list_block border-left pd_l20">
-        <ul class="item_detail" ng-class="{collaps: editorEnabled}">
-          <li ng-repeat="newItemesDetail in vm.itemDetails"><strong>{{newItemesDetail.customer}}</strong> {{newItemesDetail.name}} &nbsp - &nbsp {{newItemesDetail.item_delivered}}({{newItemesDetail.delivered_quantity}}) &nbsp/&nbsp {{newItemesDetail.item_received}}({{newItemesDetail.received_quantity}})</li>
-        </ul>
-      </div>
-      <div layout="row" layout-margin layout-fill class="list_block border-left pd_l25"></div>
-    </div>
-    <div class="column col-3">
-      <div class="row" style="display:inline-block">
-        <table align="left">
-          <tr ng-repeat="(item, qty) in vm.closingStock" style="text-align:right;" class="pd_l25">
-            <td>{{item}}</td>
-            <td>&nbsp; &nbsp;&nbsp; &nbsp;</td>
-            <td>{{vm.openningStock[item] || 0}}</td>
-            <td>&nbsp; &nbsp;</td>
-            <td>- </td>
-            <td>&nbsp; &nbsp;&nbsp; &nbsp;</td>
-            <td> {{vm.grTotal.item_delivered[item] || 0}}</td>
-            <td>&nbsp; &nbsp;&nbsp; &nbsp;</td>
-            <td> + </td>
-            <td>&nbsp; &nbsp;&nbsp; &nbsp;</td>
-            <td>{{vm.grTotal.item_received[item] || 0}}</td>
-            <td>&nbsp; &nbsp;&nbsp; &nbsp;</td>
-            <td> = </td>
-            <td>&nbsp; &nbsp;&nbsp; &nbsp;</td>
-            <td><span ng-class=" qty < 0? 'red_text bold':'' ">{{qty}}</span></td>
-          </tr>
-        </table>
-      </div>
-      <div layout="row" layout-margin layout-fill class="list_block  pd_l20 mat_list">
-        <!--
-                <ul>
-    <li ng-repeat="(item, qty) in vm.closingStock">{{item}}: <span ng-class=" qty < 0? 'red_text bold':'' ">{{qty}}</span></li>
-                            </ul>
-                            -->
-      </div>
-      <div layout="row" layout-fill class="list_block  pd_l20 exapand_block">
-        <div layout="row" ng-hide="!mc.isCollapsed" class="opengatepass_row2">
-          <pump-form></pump-form>
+        <!-- open gate col2 start here -->
+        <div class="column col-3">
+            <div layout="row" layout-margin layout-fill class="list_block border-left pd_l20">
+                <ul class="item_detail" ng-class="{collaps: editorEnabled}">
+                    <li ng-repeat="txn in vm.gatepass.transactions"><strong>{{txn.customer}}</strong> {{txn.name}} &nbsp - &nbsp {{txn.item_delivered}}({{txn.delivered_quantity}}) &nbsp/&nbsp {{txn.item_received}}({{txn.received_quantity}})</li>
+                </ul>
+            </div>
+            <div layout="row" layout-margin layout-fill class="list_block border-left pd_l25"></div>
         </div>
-      </div>
+        <div class="column col-3">
+            <div class="row" style="display:inline-block">
+                <table class="openingstock_items">
+                    <tr ng-repeat="(item, qty) in vm.closingStock" style="text-align:right;">
+                        <td>{{item}}</td>
+                        <td>{{vm.openningStock[item] || 0}}</td>
+                        <td class="sign">- </td>
+                        <td> {{vm.grTotal.item_delivered[item] || 0}}</td>
+                        <td class="sign"> + </td>
+                        <td>{{vm.grTotal.item_received[item] || 0}}</td>
+                        <td class="sign"> = </td>
+                        <!--                       <td>&nbsp;&nbsp;</td>-->
+                        <td><span ng-class=" qty < 0? 'red_text bold':'' ">{{qty}}</span></td>
+                    </tr>
+                </table>
+            </div>
+            <div layout="row" layout-margin layout-fill class="list_block  pd_l20 mat_list"> </div>
+            <div layout="row" layout-fill class="list_block  pd_l20 exapand_block">
+                <div layout="row" ng-hide="!mc.isCollapsed" class="opengatepass_row2">
+                    <pump-form gatepass="vm.gatepass.inGatepass"></pump-form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </md-card>
 <!-- good wills info  block start-->
 <md-card class="c_shadow_none viwe_more_card " ng-click="mc.isCollapsed=!mc.isCollapsed " ng-init="ClickToEditCtrl=true ">
-  <!-- submit button -->
-  <div class=" view_more " ng-class="{collaps: editorEnabled}">
-    <div ng-hide=" editorEnabled ">
-      <p href="# " ng-click="editorEnabled=!editorEnabled ">View More</p>
-    </div>
-    <div ng-show="editorEnabled ">
-      <p href="# " ng-click="editorEnabled=!editorEnabled ">View Less</p>
-    </div> <i class="icon accordian_icon " ng-class="mc.isCollapsed ? 'ion-ios-minus-outline' : 'ion-android-add-circle ' "></i> </div>
+    <!-- submit button -->
+    <div class=" view_more " ng-class="{collaps: editorEnabled}">
+        <div ng-hide=" editorEnabled ">
+            <p href="# " ng-click="editorEnabled=!editorEnabled ">View More</p>
+        </div>
+        <div ng-show="editorEnabled ">
+            <p href="# " ng-click="editorEnabled=!editorEnabled ">View Less</p>
+        </div> <i class="icon accordian_icon " ng-class="mc.isCollapsed ? 'ion-ios-minus-outline' : 'ion-android-add-circle ' "></i> </div>
 </md-card>
 <!-- good wills info  block end -->

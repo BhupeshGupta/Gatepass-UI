@@ -156,8 +156,8 @@ div[layout="column"] {
         @extend .black;
         position: relative;
         .toolbar_left {
-            position: absolute;
-            top: 15px;
+            position: relative;
+            top: 0px;
         }
         md-datepicker {
             background: none;
@@ -174,9 +174,30 @@ div[layout="column"] {
         }
     }
 }
+.warehouse {
+    float: left;
+    display: inline-block;
+    p {
+        float: left;
+        margin: 5px 0 0 10px;
+        font-size: 18px;
+        i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+    }
+    input {}
+    md-autocomplete {
+        float: left;
+        margin-left: 15px;
+        background: none;
+        border: 1px solid #ccc;
+        width: 280px;
+    }
+}
 .md-toolbar-tools {
     h3 {
-        margin: 8px 5px 0 0px;
+        margin: 12px 5px 0 0px;
         border-right: 2px solid #fff;
         float: left;
         padding-right: 10px;
@@ -184,10 +205,10 @@ div[layout="column"] {
         font-weight: 300;
     }
     .date_picker {
-        width: 100%;
+        width: 160px;
         float: left;
         margin-left: 10px;
-        width: 400px;
+        margin-top: 2px;
         span {
             font-size: 15px;
         }

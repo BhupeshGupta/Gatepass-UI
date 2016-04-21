@@ -14,8 +14,7 @@ class OpenGatepassController {
         };
 
         vm.openningStock = {};
-        console.log(vm.gatepass.items);
-        angular.forEach(vm.gatepass.items, function (value, index) {
+        angular.forEach(vm.gatepass.outGatepass.items, function (value, index) {
             vm.openningStock[value.item] = value.quantity;
         });
 
@@ -27,7 +26,7 @@ class OpenGatepassController {
         }
 
         vm.addRow = function () {
-            vm.itemDetails.push({
+            vm.gatepass.transactions.push({
                 "creation": "2016-04-16 13:14:15.274965",
                 "doctype": "Goods Receipt",
                 "owner": "Administrator",
@@ -62,7 +61,7 @@ class OpenGatepassController {
             });
 
             resetGrTotal();
-            angular.forEach(vm.itemDetails, function (value, index) {
+            angular.forEach(vm.gatepass.transactions, function (value, index) {
                 vm.grTotal.item_delivered[value.item_delivered] = vm.grTotal.item_delivered[value.item_delivered] || 0;
                 vm.grTotal.item_received[value.item_received] = vm.grTotal.item_received[value.item_received] || 0;
                 vm.grTotal.item_delivered[value.item_delivered] += value.delivered_quantity;
@@ -89,7 +88,7 @@ class OpenGatepassController {
         vm.addRow();
         $timeout(vm.addRow, 10 * 1000);
       }
-      
+
 
     }
 }

@@ -13,7 +13,61 @@ angular.module('app', [
         "ngInject";
     })
 
-.config(stateConfig);
+.config(stateConfig)
+
+.config(function ($mdDateLocaleProvider) {
+    $mdDateLocaleProvider.formatDate = function (date) {
+        return moment(date).format('DD-MM-YYYY');
+    };
+})
+
+.config(function ($httpProvider) {
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+})
+
+.factory('DocumentService', function ($http) {
+    var factory = {
+        search: function (documentType, query, filters) {
+            var data = {
+                txt: query,
+                doctype: documentType,
+                cmd: 'frappe.widgets.search.search_link',
+                _type: 'GET',
+                filters: JSON.stringify(filters),
+
+                sid: "0cd71e1c5923e6e9d9c4a876090096d78f65eb90851009d8e22e3e4f"
+            };
+            var url = 'http://192.168.31.124:8080' + '?' + $.param(data);
+            return $http({
+                url: url,
+                loading: true,
+                method: 'GET'
+            });
+        },
+        create: function (documentType, document, review) {
+            var server = SettingsFactory.getERPServerBaseUrl();
+
+            if (typeof review != 'undefined' && review) {
+                var server = SettingsFactory.getReviewServerBaseUrl() + '/review';
+            }
+
+            return $http({
+                url: server + '/api/resource/' + documentType + '/',
+                loading: true,
+                method: 'POST',
+                data: $.param({
+                    data: JSON.stringify(document),
+                    sid: SessionService.getToken(),
+                    client: "app"
+                })
+            });
+
+        }
+    };
+
+    return factory;
+});
+
 
 function stateConfig($stateProvider, $urlRouterProvider, $compileProvider) {
     "ngInject";
@@ -28,90 +82,50 @@ function stateConfig($stateProvider, $urlRouterProvider, $compileProvider) {
 
 
 
-function AppController() {
+function AppController($http, DocumentService) {
     var mc = this;
 
     mc.addOpenGatepass = function (gatepass) {
-        mc.openGatepassList.splice(0, 0, {
-          outGatepass: gatepass,
-          inGatepass: {},
-          transactions: []
+        gatepass.transaction_date = moment(mc.workingDate).format('YYYY-MM-DD');
+        gatepass.warehouse = mc.warehouse.value;
+        gatepass.posting_date = gatepass.transaction_date;
+
+        $http({
+            method: 'POST',
+            url: 'http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip',
+            data: $.param({
+                gatepass: JSON.stringify(gatepass),
+                sid: "0cd71e1c5923e6e9d9c4a876090096d78f65eb90851009d8e22e3e4f"
+            })
+        }).then(function successCallback(response) {
+            mc.openGatepassList.splice(0, 0, response.data.message.open[0]);
+        }, function errorCallback(response) {
+            console.log(response);
         });
+
+
     }
-    // mc.closeGatepass = function (gatepass) {
-    //     mc.addGatepass.splice(0, 0, gatepass);
-    // }
 
     mc.removeOpenGatepass = function (index) {
         mc.openGatepassList.splice(index, 1);
     }
-
     mc.addClosedGatepass = function (gatepass) {
         mc.closedGatepassList.splice(0, 0, gatepass);
     }
 
     mc.closedGatepassList = [];
+    mc.openGatepassList = [];
 
-    mc.openGatepassList = [
-      {
-            "creation": "2016-03-22 20:13:39.181818",
-            "voucher_type": "ERV",
-            "doctype": "Gatepass",
-            "fuel_quantity": 150,
-            "owner": "ameer1982ahmad@gmail.com",
-            "posting_time": "20:11:36",
-            "modified_by": "ameer1982ahmad@gmail.com",
-            "transaction_date": "2016-03-22",
-            "vehicle": "PB13AL5026",
-            "warehouse": "Sherpur Godwon - AL",
-            "docstatus": 1,
-            "fuel_slip_id": "1168",
-            "company": "Arun Logistics",
-            "driver": "SURJIT SINGH",
-            "fiscal_year": "2015-16",
-            "fuel_pump": "Modern Motors Works",
-            "dispatch_destination": "Plant",
-            "name": "P-GP/2075-Out",
-            "expenses": 677,
-            "mobiloil": 20,
-            "items": [
-                {
-                    "modified_by": "ameer1982ahmad@gmail.com",
-                    "name": "720c5673910772009fccf7762bf22973e08b601f2a0ba8b513d4ec2f",
-                    "parent": "P-GP/2075-Out",
-                    "item": "EC19",
-                    "quantity": 80,
-                    "creation": "2016-03-22 20:13:39.181818",
-                    "modified": "2016-03-22 20:13:42.954506",
-                    "doctype": "Gatepass Item",
-                    "idx": 1,
-                    "parenttype": "Gatepass",
-                    "owner": "ameer1982ahmad@gmail.com",
-                    "docstatus": 1,
-                    "parentfield": "items"
-                },
-                {
-                    "modified_by": "ameer1982ahmad@gmail.com",
-                    "name": "abeccd721da274946658f2e01c7c4d3994d82cda25558692aceeaa40",
-                    "parent": "P-GP/2075-Out",
-                    "item": "EC47.5",
-                    "creation": "2016-03-22 20:13:39.181818",
-                    "modified": "2016-03-22 20:13:42.954506",
-                    "doctype": "Gatepass Item",
-                    "idx": 2,
-                    "parenttype": "Gatepass",
-                    "owner": "ameer1982ahmad@gmail.com",
-                    "docstatus": 1,
-                    "quantity": 75,
-                    "parentfield": "items"
-              }
-            ],
-            "route": "LUDHIANA TO BAHADURGARH",
-            "modified": "2016-03-22 20:13:42.954506",
-            "gatepass_type": "Out",
-            "posting_date": "2016-03-22"
-        }
-     ]
+    $http.get("http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?from_date=2016-04-20&to_date=2016-04-20")
+        .then(function (data) {
+            mc.openGatepassList = data.data.message.open;
+            mc.closedGatepassList = data.data.message.closed;
+        });
 
+    mc.searchWarehouse = function (query) {
+        return DocumentService.search('Warehouse', query, {}).then(function (data) {
+            return data.data.results;
+        })
+    }
 
 }

@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-function NewVoucherController() {
+function NewVoucherController(DocumentService) {
     var vm = this;
     vm.submit = function () {
         var gatepass = angular.copy(vm.gatepass);
@@ -27,10 +27,35 @@ function NewVoucherController() {
             });
         });
         gatepass.items = newItems;
+
+        if (gatepass.vehicle)
+            gatepass.vehicle = gatepass.vehicle.value;
+        if (gatepass.driver)
+            gatepass.driver = gatepass.driver.value;
+        if (gatepass.fuel_pump)
+            gatepass.fuel_pump = gatepass.fuel_pump.value;
+
+        gatepass.gatepass_type = "Out";
+        gatepass.voucher_type = "ERV";
+        gatepass.company = "Arun Logistics";
+        gatepass.dispatch_destination = "Other";
+
         vm.onCreation({
             gatepass: gatepass
         });
         vm.gatepass = {};
     }
+
+    vm.searchVehicle = function (query) {
+        return DocumentService.search('Transportation Vehicle', query, {}).then(function (data) {
+            return data.data.results;
+        })
+    }
+    vm.searchDriver = function (query) {
+        return DocumentService.search('Driver', query, {}).then(function (data) {
+            return data.data.results;
+        })
+    }
+
 }
 export default NewVoucherController;

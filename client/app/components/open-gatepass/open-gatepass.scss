@@ -186,3 +186,27 @@ li {
     padding-left: 25px !important;
     display: inline-block;
 }
+.openingstock_items {
+    td {
+        &:first-child {
+            width: 70px;
+        }
+        &:last-child {
+            width: 70px;
+        }
+        &.sign {
+            width: 30px;
+            text-align: center;
+        }
+        font-family: monospace;
+        text-align: right;
+        font-size: 16px;
+        flex: none;
+        display: inline-block;
+        width: 40px;
+    }
+}
+.gatepass_items {
+    float: left;
+    width: 240px;
+}

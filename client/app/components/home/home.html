@@ -1,87 +1,98 @@
 <div layout="column" class="relative" layout-fill role="main">
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <div class="toolbar_left md-default-theme">
-        <h3> ERP </h3>
-        <div class="date_picker"> <span>Date</span>
-          <md-datepicker ng-model="myDate" md-placeholder="Enter date"> </md-datepicker> <span>To</span>
-          <md-datepicker ng-model="myDate" md-placeholder="Enter date"> </md-datepicker>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <div class="toolbar_left md-default-theme">
+                <h3> ERP </h3>
+                <div class="date_picker"> <span>Date</span>
+                    <md-datepicker ng-model="mc.workingDate" md-placeholder="Enter date"> </md-datepicker>
+                </div>
+                <div class="warehouse">
+                    <p><i class="ion-ios-home-outline" aria-hidden="true"></i>warehouse</p>
+                    <md-autocomplete md-selected-item="mc.warehouse" md-item-text="item.value" md-items="item in mc.searchWarehouse(ctrl.txtWarehouse)" md-search-text="ctrl.txtWarehouse" md-min-length="0" placeholder="Select Location">
+                        <md-item-template>
+                            <span md-highlight-text="ctrl.txtWarehouse" md-highlight-flags="^i">{{item.value}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            No warehouse matching "{{ctrl.txtWarehouse}}" were found.
+                        </md-not-found>
+                    </md-autocomplete>
+                </div>
+            </div>
+            <span flex=""></span>
+            <div class="toolbar_right md-default-theme">
+                <div class="user_block"> <img src="img/user" alt="user" />
+                    <p>Username</p>
+                </div>
+            </div>
         </div>
-      </div> <span flex=""></span>
-      <div class="toolbar_right md-default-theme">
-        <div class="user_block"> <img src="img/user" alt="user" />
-          <p>Username</p>
+    </md-toolbar>
+    <md-content flex md-scroll-y>
+        <div layout="column" layout-fill="">
+            <div layout="row" layout-align="center center" class="ng-scope">
+                <md-card flex-gt-sm="65" flex-gt-md="90" class="md-default-theme wrapper">
+                    <md-card-content class="pd0">
+                        <md-list role="list" class="pd0">
+                            <!-- vocher1 start here -->
+                            <div class="md-toolbar-tools main_heading">
+                                <h1>New Voucher</h1> </div>
+                            <!-- new Voucher list start here -->
+                            <md-item>
+                                <div layout="row">
+                                    <div flex-gt-sm="68" flex-gt-md="70" class="ptn-info-grid">
+                                        <div class="card_wrap">
+                                            <new-voucher ng-attr-on-creation="mc.addOpenGatepass(gatepass)"></new-voucher>
+                                        </div>
+                                    </div>
+                                    <!-- notifications block start here -->
+                                    <div layout="row" flex-gt-sm="30" flex-gt-md="30" id="customer-phone-img" layout-fill="">
+                                        <div class="notifications_block">
+                                            <h1>Notifications</h1>
+                                            <ul>
+                                                <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
+                                                <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
+                                                <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
+                                                <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
+                                                <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- notifications block end here -->
+                                </div>
+                            </md-item>
+                            <!-- new voucher list end here -->
+                            <!-- vocher1 start here  -->
+                            <!-- open gatepass start here -->
+                            <md-item class="opengatepass list_contain" init="mc.coll">
+                                <div class="md-toolbar-tools main_heading">
+                                    <h1>Open Gatepass</h1> </div>
+                                <div layout="row">
+                                    <div flex="100" class="ptn-info-grid">
+                                        <div class="card_wrap" ng-repeat="gatepass in mc.openGatepassList track by $index">
+                                            <open-gatepass gatepass="gatepass" disabled="false" on-submit="mc.addClosedGatepass(gatepass); mc.removeOpenGatepass($index)"></open-gatepass>
+                                        </div>
+                                    </div>
+                                </div>
+                            </md-item>
+                            <!-- vocher1 start here  -->
+                            <!-- good wills block item start -->
+                            <!-- open gatepass start here -->
+                            <md-item class="opengatepass list_contain close_gatepss">
+                                <div class="md-toolbar-tools main_heading">
+                                    <h1>Close</h1> </div>
+                                <div layout="row">
+                                    <div flex="100" class="ptn-info-grid">
+                                        <div class="close_gatepass" ng-repeat="gatepass in mc.closedGatepassList track by $index">
+                                            <open-gatepass gatepass="gatepass" disabled="true"></open-gatepass>
+                                        </div>
+                                    </div>
+                                </div>
+                            </md-item>
+                            <!-- vocher1 start here  -->
+                            <!-- good wills block item end -->
+                        </md-list>
+                    </md-card-content>
+                </md-card>
+            </div>
         </div>
-      </div>
-    </div>
-  </md-toolbar>
-  <md-content flex md-scroll-y>
-    <div layout="column" layout-fill="">
-      <div layout="row" layout-align="center center" class="ng-scope">
-        <md-card flex-gt-sm="65" flex-gt-md="90" class="md-default-theme wrapper">
-          <md-card-content class="pd0">
-            <md-list role="list" class="pd0">
-              <!-- vocher1 start here -->
-              <div class="md-toolbar-tools main_heading">
-                <h1>New Voucher</h1> </div>
-              <!-- new Voucher list start here -->
-              <md-item>
-                <div layout="row">
-                  <div flex-gt-sm="68" flex-gt-md="70" class="ptn-info-grid">
-                    <div class="card_wrap">
-                      <new-voucher ng-attr-on-creation="mc.addOpenGatepass(gatepass)"></new-voucher>
-                    </div>
-                  </div>
-                  <!-- notifications block start here -->
-                  <div layout="row" flex-gt-sm="30" flex-gt-md="30" id="customer-phone-img" layout-fill="">
-                    <div class="notifications_block">
-                      <h1>Notifications</h1>
-                      <ul>
-                        <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
-                        <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
-                        <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
-                        <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
-                        <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <!-- notifications block end here -->
-                </div>
-              </md-item>
-              <!-- new voucher list end here -->
-              <!-- vocher1 start here  -->
-              <!-- open gatepass start here -->
-              <md-item class="opengatepass list_contain" init="mc.coll">
-                <div class="md-toolbar-tools main_heading">
-                  <h1>Open Gatepass</h1> </div>
-                <div layout="row">
-                  <div flex="100" class="ptn-info-grid">
-                    <div class="card_wrap" ng-repeat="gatepass in mc.openGatepassList track by $index">
-                      <open-gatepass gatepass="gatepass" disabled="false" on-submit="mc.addClosedGatepass(gatepass); mc.removeOpenGatepass($index)"></open-gatepass>
-                    </div>
-                  </div>
-                </div>
-              </md-item>
-              <!-- vocher1 start here  -->
-              <!-- good wills block item start -->
-              <!-- open gatepass start here -->
-              <md-item class="opengatepass list_contain close_gatepss">
-                <div class="md-toolbar-tools main_heading">
-                  <h1>Close</h1> </div>
-                <div layout="row">
-                  <div flex="100" class="ptn-info-grid">
-                    <div class="close_gatepass" ng-repeat="gatepass in mc.closedGatepassList track by $index">
-                      <open-gatepass gatepass="gatepass" disabled="true"></open-gatepass>
-                    </div>
-                  </div>
-                </div>
-              </md-item>
-              <!-- vocher1 start here  -->
-              <!-- good wills block item end -->
-            </md-list>
-          </md-card-content>
-        </md-card>
-      </div>
-    </div>
-  </md-content>
+    </md-content>
 </div>

@@ -2,7 +2,8 @@
 <md-card class="c_shadow_none">
     <!-- submit button -->
     <div class="submit_button l-grey">
-        <p>1 </p>
+        <button class="refresh_icon"><i class="ion-refresh"></i></button>
+        <p>{{vm.gatepass.name}} / {{vm.gatepass.out_gatepass}}</p>
         <button class=" md-button black" type="button" ng-click="vm.onSubmit()"><span class="ng-scope" ng-disabled="vm.disabled">Submit</span>
             <div class="md-ripple-container"></div>
         </button>

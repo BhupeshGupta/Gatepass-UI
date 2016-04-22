@@ -402,3 +402,21 @@ input[type=number]::-webkit-outer-spin-button {
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="date"]::-webkit-inner-spin-button {
   display: none; }
+
+.close_gatepss open-gatepass .submit_button button {
+  display: none; }
+
+.close_gatepss open-gatepass .viwe_more_card {
+  display: none; }
+
+button.refresh_icon {
+  padding: 0px 10px 0 0;
+  color: #333;
+  display: inline-block;
+  float: left !important;
+  border: none;
+  background: none;
+  margin-top: 5px; }
+
+button i {
+  font-size: 25px; }

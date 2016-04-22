@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-function NewVoucherController(DocumentService) {
+function NewVoucherController(DocumentService, $element) {
     var vm = this;
     vm.submit = function () {
         var gatepass = angular.copy(vm.gatepass);
@@ -43,19 +43,27 @@ function NewVoucherController(DocumentService) {
         vm.onCreation({
             gatepass: gatepass
         });
+
+        var autoComp = $($element).find('md-autocomplete-wrap');
+
+        autoComp.each(function (index, elem) {
+            angular.element(elem).scope().$mdAutocompleteCtrl.clear();
+        });
         vm.gatepass = {};
-    }
+    };
+
+
 
     vm.searchVehicle = function (query) {
         return DocumentService.search('Transportation Vehicle', query, {}).then(function (data) {
             return data.data.results;
-        })
-    }
+        });
+    };
     vm.searchDriver = function (query) {
         return DocumentService.search('Driver', query, {}).then(function (data) {
             return data.data.results;
-        })
-    }
+        });
+    };
 
 }
 export default NewVoucherController;

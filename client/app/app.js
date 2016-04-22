@@ -104,28 +104,35 @@ function AppController($http, DocumentService) {
         });
 
 
-    }
+    };
 
     mc.removeOpenGatepass = function (index) {
         mc.openGatepassList.splice(index, 1);
-    }
+    };
     mc.addClosedGatepass = function (gatepass) {
         mc.closedGatepassList.splice(0, 0, gatepass);
-    }
+    };
 
     mc.closedGatepassList = [];
     mc.openGatepassList = [];
 
-    $http.get("http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?from_date=2016-04-20&to_date=2016-04-20")
-        .then(function (data) {
-            mc.openGatepassList = data.data.message.open;
-            mc.closedGatepassList = data.data.message.closed;
-        });
+
 
     mc.searchWarehouse = function (query) {
         return DocumentService.search('Warehouse', query, {}).then(function (data) {
             return data.data.results;
-        })
-    }
+        });
+    };
+
+
+    // on date change
+    mc.onDateChange = function () {
+        var date = moment(mc.workingDate).format('YYYY-MM-DD');
+        $http.get("http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?from_date=" + date + "&to_date=" + date)
+            .then(function (data) {
+                mc.openGatepassList = data.data.message.open;
+                mc.closedGatepassList = data.data.message.closed;
+            });
+    };
 
 }

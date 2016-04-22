@@ -88,6 +88,7 @@ class OpenGatepassController {
         vm.addRow();
         $timeout(vm.addRow, 10 * 1000);
       }
+      vm.refres
 
 
     }

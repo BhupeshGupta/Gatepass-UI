@@ -497,3 +497,31 @@ input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="date"]::-webkit-inner-spin-button {
     display: none;
 }
+.close_gatepss {
+    open-gatepass {
+        .submit_button {
+            button {
+                &:[disabled="disabled"] {
+                    display: none;
+                }
+            }
+        }
+        .viwe_more_card {
+            display: none;
+        }
+    }
+}
+button {
+    &.refresh_icon {
+        padding: 0px 10px 0 0;
+        color: #333;
+        display: inline-block !important;
+        float: left !important;
+        border: none;
+        background: none;
+        margin-top: 5px;
+    }
+    i {
+        font-size: 25px;
+    }
+}

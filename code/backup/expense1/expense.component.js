@@ -1,7 +1,6 @@
 import template from './expense.html';
+import ExpenseController from './expense.controller';
 import './expense.scss';
-import ExpenseController from './expense.controller.js';
-
 
 let expenseComponent = {
     restrict: 'E',
@@ -12,6 +11,5 @@ let expenseComponent = {
     controller: ExpenseController,
     controllerAs: 'ec'
 };
-
 
 export default expenseComponent;

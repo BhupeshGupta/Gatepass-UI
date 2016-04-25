@@ -8,7 +8,9 @@ let openGatepassComponent = {
     bindings: {
         gatepass: '=',
         disabled: '=',
-        onSubmit: '&'
+        onSubmit: '&',
+        onRefresh: '&',
+
     },
     template,
     controller: OpenGatepassController,

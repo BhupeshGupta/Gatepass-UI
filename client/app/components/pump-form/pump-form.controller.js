@@ -2,7 +2,7 @@ function PumpFormController($scope, $mdDialog, $mdMedia, DocumentService) {
     // for autocomplete pump
     this.showAdvanced = (ev) => {
         $mdDialog.show({
-            templateUrl: './app/components/expense/expense.html',
+            template: '<expense></expense>',
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose: true

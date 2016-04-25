@@ -68,7 +68,7 @@
                                 <div layout="row">
                                     <div flex="100" class="ptn-info-grid">
                                         <div class="card_wrap" ng-repeat="gatepass in mc.openGatepassList track by $index">
-                                            <open-gatepass gatepass="gatepass" disabled="false" on-submit="mc.addClosedGatepass(gatepass); mc.removeOpenGatepass($index)"></open-gatepass>
+                                            <open-gatepass gatepass="gatepass" disabled="false" on-refresh="mc.onRefresh(tripid)" on-submit="mc.addClosedGatepass(gatepass);"></open-gatepass>
                                         </div>
                                     </div>
                                 </div>

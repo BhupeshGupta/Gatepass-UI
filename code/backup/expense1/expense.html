@@ -1,0 +1,200 @@
+<div layout="row " layout-sm="column " flex="100 " class="detail_block1 expense_block">
+    <div class="md-block expense_left " flex="60 ">
+        <!-- toll block start here -->
+        <div class="input_block input_50 ">
+            <div layout="row " layout-sm="column " class="m_input">
+                <div class="input_group ">
+                    <label class="flex-25 " for="toll ">Toll</label>
+                    <input class="ng-valid md-input ng-touched " name="toll ">
+                </div>
+                <div class="repeat_row" layout="row" layout-sm="column" ng-repeat="ec in tollList">
+                    <div class="add_row" ng-click="addList">
+                        <i class="ion-android-add-circle"></i>
+                    </div>
+                    <div class="input_group ">
+                        <input class="ng-valid md-input ng-touched " placeholder="Slip-ID">
+                    </div>
+                    <div class="input_group ">
+                        <input class="ng-valid md-input ng-touched " placeholder="Barrier">
+                    </div>
+                    <div class="input_group ">
+                        <input class="ng-valid md-input ng-touched " placeholder="Ammount">
+                    </div>
+                </div>
+
+            </div>
+            <div class="repeat_row_outer" style="display:none;">
+                <div class=" repeat_row " layout="row " layout-sm="column ">
+                    <div class="add_row ">
+                        <i class="ion-ios-minus"></i>
+                    </div>
+                    <div class="input_group ">
+                        <input class="ng-valid md-input ng-touched " placeholder="Slip-ID ">
+                    </div>
+                    <div class="input_group ">
+                        <input class="ng-valid md-input ng-touched " placeholder="Barrier ">
+                    </div>
+                    <div class="input_group ">
+                        <input class="ng-valid md-input ng-touched " placeholder="Ammount ">
+                    </div>
+                </div>
+                <div class=" repeat_row " layout="row " layout-sm="column ">
+                    <div class="add_row ">
+                        <i class="ion-ios-minus"></i>
+                    </div>
+                    <div class="input_group ">
+                        <input class="ng-valid md-input ng-touched " placeholder="Slip-ID ">
+                    </div>
+                    <div class="input_group ">
+                        <input class="ng-valid md-input ng-touched " placeholder="Barrier ">
+                    </div>
+                    <div class="input_group ">
+                        <input class="ng-valid md-input ng-touched " placeholder="Ammount ">
+                    </div>
+                </div>
+                <div class=" repeat_row " layout="row " layout-sm="column ">
+                    <div class="add_row ">
+                        <i class="ion-ios-minus"></i>
+                    </div>
+                    <div class="input_group ">
+                        <input class="ng-valid md-input ng-touched " placeholder="Slip-ID ">
+                    </div>
+                    <div class="input_group ">
+                        <input class="ng-valid md-input ng-touched " placeholder="Barrier ">
+                    </div>
+                    <div class="input_group ">
+                        <input class="ng-valid md-input ng-touched " placeholder="Ammount ">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- toll block end here -->
+
+        <!-- Food block start here -->
+        <div class="input_block input_50 ">
+            <div layout="row " layout-sm="column ">
+                <div class="input_group ">
+                    <label class="flex-25 " for="Food ">Food</label>
+                    <input class="ng-valid md-input ng-touched " name="Food ">
+                </div>
+                <div class="input_group ">
+                    <label class="flex-25 " for="remarks ">Remarks</label>
+                    <textarea class="ng-valid md-input ng-touched " placeholder="Remarks "></textarea>
+                </div>
+            </div>
+        </div>
+        <!-- food block end here -->
+
+        <!-- Labour block start here -->
+        <div class="input_block input_50 ">
+            <div layout="row " layout-sm="column ">
+                <div class="input_group ">
+                    <label class="flex-25 " for="Labour ">Labour</label>
+                    <input class="ng-valid md-input ng-touched " name="Labour ">
+                </div>
+                <div class="input_group ">
+                    <label class="flex-25 " for="remarks ">Remarks</label>
+                    <textarea class="ng-valid md-input ng-touched " placeholder="Remarks "></textarea>
+                </div>
+            </div>
+        </div>
+        <!-- Labour block end here -->
+
+        <!-- Union block start here -->
+        <div class="input_block input_50 ">
+            <div layout="row " layout-sm="column ">
+                <div class="input_group ">
+                    <label class="flex-25 " for="union ">Union</label>
+                    <input class="ng-valid md-input ng-touched ">
+                </div>
+                <div class="input_group ">
+                    <label class="flex-25 " for="remarks ">Remarks</label>
+                    <textarea class="ng-valid md-input ng-touched " placeholder="Remarks "></textarea>
+                </div>
+            </div>
+        </div>
+        <!-- Union block end here -->
+
+        <!-- Sundry block start here -->
+        <div class="input_block input_50 ">
+            <div layout="row " layout-sm="column ">
+                <div class="input_group ">
+                    <label class="flex-25 " for="union ">Sundry</label>
+                    <input class="ng-valid md-input ng-touched " name="union ">
+                </div>
+                <div class="input_group ">
+                    <label class="flex-25 " for="remarks ">Remarks</label>
+                    <textarea class="ng-valid md-input ng-touched " placeholder="Remarks "></textarea>
+                </div>
+            </div>
+        </div>
+        <!-- Sundry block end here -->
+        <!-- total block start here -->
+        <div class="input_block input_50 total_block ">
+            <div layout="row " layout-sm="column ">
+                <div class="input_group ">
+                    <label class="flex-25 " for="union ">Total</label>
+                    <input class="ng-valid md-input ng-touched " name="total">
+                </div>
+
+            </div>
+        </div>
+        <!-- Sundry block end here -->
+    </div>
+    <div class="md-block border_left " flex="40 ">
+        <div class="md-block gd1_right o_rightsidebar ">
+
+            <div class="input_block input_50 ">
+                <div layout="row " layout-sm="column ">
+                    <div class="input_group ">
+                        <label class="flex-50 ">Credit Company </label>
+                        <md-autocomplete md-selected-item="selectedItem " md-search-text="searchText " md-items="item in getMatches(searchText) " md-item-text="item.display ">
+                            <md-item-template>
+                                <span md-highlight-text="searchText ">{{item.display}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No matches found.
+                            </md-not-found>
+                        </md-autocomplete>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="input_block input_50 ">
+                <div layout="row " layout-sm="column ">
+                    <div class="input_group ">
+                        <label class="flex-50 ">Credit Account</label>
+                        <md-autocomplete md-selected-item="selectedItem " md-search-text="searchText " md-items="item in getMatches(searchText) " md-item-text="item.display ">
+                            <md-item-template>
+                                <span md-highlight-text="searchText ">{{item.display}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No matches found.
+                            </md-not-found>
+                        </md-autocomplete>
+                    </div>
+
+                </div>
+            </div>
+            <div class="input_block input_50 ">
+                <div layout="row " layout-sm="column ">
+                    <div class="input_group ">
+                        <label class="flex-50 " for="credit_date ">Credit Date</label>
+                        <input class="ng-valid md-input " name="creditdate " type="date" placeholder="dd-mm-yy">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="submit_button l-grey">
+            <button class="md-raised md-button md-ink-ripple black" type="button" aria-label="Button"><span class="ng-scope">Submit</span>
+                <div class="md-ripple-container"></div>
+            </button>
+            <button class="md-raised md-button md-ink-ripple black" type="button" aria-label="Button"><span class="ng-scope">Cancel</span>
+                <div class="md-ripple-container"></div>
+            </button>
+        </div>
+    </div>
+
+</div>

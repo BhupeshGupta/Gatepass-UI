@@ -5,11 +5,10 @@
 }
 md-dialog {
     background: #f3f3f3;
-    padding: 20px;
+    padding: 15px 0 15px 10px;
     border: 1px solid #ccc;
-    width: 90%;
-    max-width: 1100px;
-    position: relative;
+    max-width: 1000px;
+    width: 1000px;
     .input_group {
         padding-bottom: 0;
         margin: 0px;
@@ -19,7 +18,6 @@ md-dialog {
         }
     }
     .expense_left {
-        position: relative;
         label {
             width: 80px;
             display: inline-block;
@@ -27,6 +25,7 @@ md-dialog {
         }
     }
     .input_block {
+        padding: 5px 10px;
         position: relative;
         textarea {
             font-size: 12px;
@@ -40,6 +39,11 @@ md-dialog {
                 margin: 0 5px 10px 0;
             }
         }
+    }
+    .total_block {
+        border-top: 1px solid #ccc;
+        padding: 20px 10px 5px 10px;
+        margin-top: 10px;
     }
     .border_left {
         margin-left: 20px;
@@ -82,30 +86,27 @@ md-dialog {
         }
     }
     .repeat_row {
-        display: block;
-        z-index: 38;
-        //        background: #fff;
-        //        border: 1px solid #ccc;
         .add_row {
-            width: 100%;
-            float: left;
-            width: 100%;
+            position: absolute;
+            right: 20px;
+            top: 5px;
         }
     }
     .repeat_row_outer {
-        float: left;
+        position: absolute;
+        top: 47px;
+        z-index: 2;
+        left: 0;
         width: 100%;
         background: #f3f3f3;
-        padding: 0px 0 0px 0;
+        padding: 0px 0 15px 0;
         .repeat_row {
             margin-left: 195px;
             position: relative;
-        }
-        .input_group {
-            margin-right: 5px;
-            padding: 5px 0;
-            display: inline-block;
-            input {}
+            .input_group {
+                margin-right: 5px;
+                padding: 5px 0;
+            }
         }
     }
     .submit_button {
@@ -156,99 +157,5 @@ open-gatepass {
 .list_block {
     ul {
         margin: 0;
-    }
-}
-.add_row {
-    display: block;
-    button {
-        background: none;
-        border: none;
-        position: absolute;
-        right: 0px;
-        top: 0px;
-    }
-    .tolllist {
-        display: block;
-        width: 100%;
-        float: left;
-    }
-    .input_group {
-        float: left;
-        display: inline-block;
-    }
-}
-.expense_remove {
-    float: right;
-    border: none;
-    background: none;
-}
-expense {
-    .expense_left {
-        float: left;
-        width: 65%;
-        box-sizing: border-box;
-        .input_group {
-            float: left;
-            &:first-child {
-                margin: 0;
-            }
-            input {
-                width: 50%;
-            }
-            textarea {
-                width: 70%;
-            }
-        }
-        .repeat_row {
-            .input_group {
-                width: 24%;
-                margin: 0 25px 10px 0;
-                input {
-                    margin-right: 0px;
-                    width: 100%;
-                }
-            }
-        }
-        .right_input {
-            width: 60%;
-        }
-        .left_input {
-            width: 40%;
-        }
-        .repeat_row_outer {
-            .input_group {
-                margin-bottom: 0px;
-            }
-        }
-    }
-    .expense_right {
-        width: 35%;
-        box-sizing: border-box;
-        .input_group {
-            margin-bottom: 10px;
-            input {
-                float: left;
-            }
-        }
-    }
-    .input_group {
-        label {
-            margin-right: 10px;
-            float: left;
-        }
-        input {
-            float: left;
-        }
-    }
-    .input_block {
-        padding: 0;
-    }
-    .textarea_block {
-        margin: 10px 0;
-    }
-    .total_block {
-        border-top: 1px solid #ccc;
-        padding: 20px 10px 5px 0px;
-        margin-top: 20px;
     }
 }

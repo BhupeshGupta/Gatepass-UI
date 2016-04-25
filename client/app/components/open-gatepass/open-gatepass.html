@@ -2,9 +2,9 @@
 <md-card class="c_shadow_none">
     <!-- submit button -->
     <div class="submit_button l-grey">
-        <button class="refresh_icon"><i class="ion-refresh"></i></button>
+        <button class="refresh_icon" ng-click="vm.refresh()"><i class="ion-refresh"></i></button>
         <p>{{vm.gatepass.name}} / {{vm.gatepass.out_gatepass}}</p>
-        <button class=" md-button black" type="button" ng-click="vm.onSubmit()"><span class="ng-scope" ng-disabled="vm.disabled">Submit</span>
+        <button class=" md-button black" type="button" ng-click="vm.submit()"><span class="ng-scope" ng-disabled="vm.disabled">Submit</span>
             <div class="md-ripple-container"></div>
         </button>
     </div>
@@ -63,7 +63,7 @@
                     </tr>
                 </table>
             </div>
-            <div layout="row" layout-margin layout-fill class="list_block  pd_l20 mat_list"> </div>
+            <div layout="row" layout-margin layout-fill class="list_block  pd_l20 mat_list" ng-init="vm.gatepass.inGatepass={}"></div>
             <div layout="row" layout-fill class="list_block  pd_l20 exapand_block">
                 <div layout="row" ng-hide="!mc.isCollapsed" class="opengatepass_row2">
                     <pump-form gatepass="vm.gatepass.inGatepass"></pump-form>

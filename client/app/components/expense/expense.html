@@ -1,148 +1,125 @@
 <div layout="row " layout-sm="column " flex="100 " class="detail_block1 expense_block">
-    <div class="md-block expense_left " flex="60 ">
+    <div class="md-block expense_left">
         <!-- toll block start here -->
         <div class="input_block input_50 ">
             <div layout="row " layout-sm="column " class="m_input">
-                <div class="input_group ">
+                <div class="input_group left_input">
                     <label class="flex-25 " for="toll ">Toll</label>
                     <input class="ng-valid md-input ng-touched " name="toll ">
                 </div>
-                <div class="repeat_row" layout="row" layout-sm="column">
-                    <div class="add_row">
-                        <i class="ion-android-add-circle"></i>
+                <div class="repeat_row right_input" layout="row" layout-sm="column">
+                    <div class="repeat_row" layout="row" layout-sm="column">
+                        <div class="add_row">
+                            <button ng-click="ec.addTollList()">
+                                <i class="ion-android-add-circle"></i>
+                            </button>
+                            <div class="tolllist">
+                                <div class="input_group ">
+                                    <input class="ng-valid md-input ng-touched " placeholder="Slip-ID">
+                                </div>
+                                <div class="input_group ">
+                                    <input class="ng-valid md-input ng-touched " placeholder="Barrier">
+                                </div>
+                                <div class="input_group ">
+                                    <input class="ng-valid md-input ng-touched " placeholder="Ammount">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="repeat_row_outer tolllist" ng-repeat="todo in ec.tollListDetail">
+                            <div class="input_group ">
+                                <input class="ng-valid md-input ng-touched " placeholder="Slip-ID">
+                            </div>
+                            <div class="input_group ">
+                                <input class="ng-valid md-input ng-touched " placeholder="Barrier">
+                            </div>
+                            <div class="input_group ">
+                                <input class="ng-valid md-input ng-touched " placeholder="Ammount">
+                            </div>
+                            <button ng-click="ec.delete($index)" class="expense_remove">
+                                <i class="ion-android-remove-circle"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="input_group ">
-                        <input class="ng-valid md-input ng-touched " placeholder="Slip-ID">
-                    </div>
-                    <div class="input_group ">
-                        <input class="ng-valid md-input ng-touched " placeholder="Barrier">
-                    </div>
-                    <div class="input_group ">
-                        <input class="ng-valid md-input ng-touched " placeholder="Ammount">
-                    </div>
-                </div>
-            </div>
-            <div class="repeat_row_outer" style="display:none;">
-                <div class=" repeat_row " layout="row " layout-sm="column ">
-                    <div class="add_row ">
-                        <i class="ion-ios-minus"></i>
-                    </div>
-                    <div class="input_group ">
-                        <input class="ng-valid md-input ng-touched " placeholder="Slip-ID ">
-                    </div>
-                    <div class="input_group ">
-                        <input class="ng-valid md-input ng-touched " placeholder="Barrier ">
-                    </div>
-                    <div class="input_group ">
-                        <input class="ng-valid md-input ng-touched " placeholder="Ammount ">
-                    </div>
-                </div>
-                <div class=" repeat_row " layout="row " layout-sm="column ">
-                    <div class="add_row ">
-                        <i class="ion-ios-minus"></i>
-                    </div>
-                    <div class="input_group ">
-                        <input class="ng-valid md-input ng-touched " placeholder="Slip-ID ">
-                    </div>
-                    <div class="input_group ">
-                        <input class="ng-valid md-input ng-touched " placeholder="Barrier ">
-                    </div>
-                    <div class="input_group ">
-                        <input class="ng-valid md-input ng-touched " placeholder="Ammount ">
-                    </div>
-                </div>
-                <div class=" repeat_row " layout="row " layout-sm="column ">
-                    <div class="add_row ">
-                        <i class="ion-ios-minus"></i>
-                    </div>
-                    <div class="input_group ">
-                        <input class="ng-valid md-input ng-touched " placeholder="Slip-ID ">
-                    </div>
-                    <div class="input_group ">
-                        <input class="ng-valid md-input ng-touched " placeholder="Barrier ">
-                    </div>
-                    <div class="input_group ">
-                        <input class="ng-valid md-input ng-touched " placeholder="Ammount ">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- toll block end here -->
 
-        <!-- Food block start here -->
-        <div class="input_block input_50 ">
-            <div layout="row " layout-sm="column ">
-                <div class="input_group ">
-                    <label class="flex-25 " for="Food ">Food</label>
-                    <input class="ng-valid md-input ng-touched " name="Food ">
-                </div>
-                <div class="input_group ">
-                    <label class="flex-25 " for="remarks ">Remarks</label>
-                    <textarea class="ng-valid md-input ng-touched " placeholder="Remarks "></textarea>
-                </div>
-            </div>
-        </div>
-        <!-- food block end here -->
-
-        <!-- Labour block start here -->
-        <div class="input_block input_50 ">
-            <div layout="row " layout-sm="column ">
-                <div class="input_group ">
-                    <label class="flex-25 " for="Labour ">Labour</label>
-                    <input class="ng-valid md-input ng-touched " name="Labour ">
-                </div>
-                <div class="input_group ">
-                    <label class="flex-25 " for="remarks ">Remarks</label>
-                    <textarea class="ng-valid md-input ng-touched " placeholder="Remarks "></textarea>
-                </div>
-            </div>
-        </div>
-        <!-- Labour block end here -->
-
-        <!-- Union block start here -->
-        <div class="input_block input_50 ">
-            <div layout="row " layout-sm="column ">
-                <div class="input_group ">
-                    <label class="flex-25 " for="union ">Union</label>
-                    <input class="ng-valid md-input ng-touched ">
-                </div>
-                <div class="input_group ">
-                    <label class="flex-25 " for="remarks ">Remarks</label>
-                    <textarea class="ng-valid md-input ng-touched " placeholder="Remarks "></textarea>
-                </div>
-            </div>
-        </div>
-        <!-- Union block end here -->
-
-        <!-- Sundry block start here -->
-        <div class="input_block input_50 ">
-            <div layout="row " layout-sm="column ">
-                <div class="input_group ">
-                    <label class="flex-25 " for="union ">Sundry</label>
-                    <input class="ng-valid md-input ng-touched " name="union ">
-                </div>
-                <div class="input_group ">
-                    <label class="flex-25 " for="remarks ">Remarks</label>
-                    <textarea class="ng-valid md-input ng-touched " placeholder="Remarks "></textarea>
-                </div>
-            </div>
-        </div>
-        <!-- Sundry block end here -->
-        <!-- total block start here -->
-        <div class="input_block input_50 total_block ">
-            <div layout="row " layout-sm="column ">
-                <div class="input_group ">
-                    <label class="flex-25 " for="union ">Total</label>
-                    <input class="ng-valid md-input ng-touched " name="total">
                 </div>
 
             </div>
+            <!-- toll block end here -->
+
+            <!-- Food block start here -->
+            <div class="input_block input_50 textarea_block">
+                <div layout="row " layout-sm="column ">
+                    <div class="input_group left_input">
+                        <label class="flex-25 " for="Food ">Food</label>
+                        <input class="ng-valid md-input ng-touched " name="Food ">
+                    </div>
+                    <div class="input_group right_input">
+                        <label class="flex-25 " for="remarks ">Remarks</label>
+                        <textarea class="ng-valid md-input ng-touched " placeholder="Remarks "></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- food block end here -->
+
+            <!-- Labour block start here -->
+            <div class="input_block input_50 textarea_block">
+                <div layout="row " layout-sm="column ">
+                    <div class="input_group left_input">
+                        <label class="flex-25 " for="Labour ">Labour</label>
+                        <input class="ng-valid md-input ng-touched " name="Labour ">
+                    </div>
+                    <div class="input_group right_input">
+                        <label class="flex-25 " for="remarks ">Remarks</label>
+                        <textarea class="ng-valid md-input ng-touched " placeholder="Remarks "></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- Labour block end here -->
+
+            <!-- Union block start here -->
+            <div class="input_block input_50 textarea_block">
+                <div layout="row " layout-sm="column ">
+                    <div class="input_group left_input">
+                        <label class="flex-25 " for="union ">Union</label>
+                        <input class="ng-valid md-input ng-touched ">
+                    </div>
+                    <div class="input_group right_input">
+                        <label class="flex-25 " for="remarks ">Remarks</label>
+                        <textarea class="ng-valid md-input ng-touched " placeholder="Remarks "></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- Union block end here -->
+
+            <!-- Sundry block start here -->
+            <div class="input_block input_50 textarea_block">
+                <div layout="row " layout-sm="column ">
+                    <div class="input_group left_input">
+                        <label class="flex-25 " for="union ">Sundry</label>
+                        <input class="ng-valid md-input ng-touched " name="union ">
+                    </div>
+                    <div class="input_group right_input">
+                        <label class="flex-25 " for="remarks ">Remarks</label>
+                        <textarea class="ng-valid md-input ng-touched " placeholder="Remarks "></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- Sundry block end here -->
+            <!-- total block start here -->
+            <div class="input_block input_50 total_block textarea_block">
+                <div layout="row " layout-sm="column ">
+                    <div class="input_group ">
+                        <label class="" for="union ">Total</label>
+                        <input class="ng-valid md-input ng-touched " name="total">
+                    </div>
+
+                </div>
+            </div>
+            <!-- Sundry block end here -->
         </div>
-        <!-- Sundry block end here -->
     </div>
-    <div class="md-block border_left " flex="40 ">
+    <div class="md-block border_left expense_right">
         <div class="md-block gd1_right o_rightsidebar ">
-
             <div class="input_block input_50 ">
                 <div layout="row " layout-sm="column ">
                     <div class="input_group ">

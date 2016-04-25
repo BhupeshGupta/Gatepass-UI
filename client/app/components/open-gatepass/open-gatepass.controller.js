@@ -14,7 +14,7 @@ class OpenGatepassController {
         };
 
         vm.openningStock = {};
-        angular.forEach(vm.gatepass.outGatepass.items, function (value, index) {
+        angular.forEach(vm.gatepass.outGatepass.item, function (value, index) {
             vm.openningStock[value.item] = value.quantity;
         });
 
@@ -59,7 +59,13 @@ class OpenGatepassController {
                 "cancelled": 0,
                 "posting_date": "2016-04-16"
             });
+            calculate();
 
+            //            $timeout(vm.addRow, 10 * 1000);
+
+        };
+
+        function calculate() {
             resetGrTotal();
             angular.forEach(vm.gatepass.transactions, function (value, index) {
                 vm.grTotal.item_delivered[value.item_delivered] = vm.grTotal.item_delivered[value.item_delivered] || 0;
@@ -80,17 +86,53 @@ class OpenGatepassController {
                 vm.closingStock[key] = vm.openningStock[key] || 0;
                 vm.closingStock[key] += value;
             });
+        }
 
-            $timeout(vm.addRow, 10 * 1000);
-        };
+        calculate();
 
         if (!this.disabled) {
-        vm.addRow();
-        $timeout(vm.addRow, 10 * 1000);
-      }
-      vm.refres
+            //            vm.addRow();
+            //            $timeout(vm.addRow, 10 * 1000);
+        }
 
+        vm.refresh = function () {
+            vm.onRefresh({
+                tripid: vm.gatepass.name
+            }).then(function (data) {
+                vm.gatepass = data;
+                calculate();
+            });
+        }
+
+        vm.submit = function () {
+            var gatepass = angular.copy(vm.gatepass.inGatepass);
+
+            {
+                let rs = [];
+                angular.forEach(vm.closingStock, function (value, key) {
+                    rs.push({
+                        item: key,
+                        quantity: value
+                    })
+                });
+
+                gatepass.items = rs;
+            }
+
+            if (gatepass.fuel_pump) {
+                gatepass.fuel_pump = gatepass.fuel_pump.value;
+            }
+
+            gatepass.vehicle = vm.gatepass.outGatepass.vehicle;
+            gatepass.driver = vm.gatepass.outGatepass.driver;
+            gatepass.trip_id = vm.gatepass.name;
+
+            vm.onSubmit({
+                gatepass: gatepass
+            });
+        };
 
     }
+
 }
 export default OpenGatepassController;

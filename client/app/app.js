@@ -35,7 +35,7 @@ angular.module('app', [
                 _type: 'GET',
                 filters: JSON.stringify(filters),
 
-                sid: "0cd71e1c5923e6e9d9c4a876090096d78f65eb90851009d8e22e3e4f"
+                sid: "237069ae502264b7cf90640385c8f4453ef4b7133ee25af7966ebb24"
             };
             var url = 'http://192.168.31.124:8080' + '?' + $.param(data);
             return $http({
@@ -95,7 +95,7 @@ function AppController($http, DocumentService) {
             url: 'http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip',
             data: $.param({
                 gatepass: JSON.stringify(gatepass),
-                sid: "0cd71e1c5923e6e9d9c4a876090096d78f65eb90851009d8e22e3e4f"
+                sid: "237069ae502264b7cf90640385c8f4453ef4b7133ee25af7966ebb24"
             })
         }).then(function successCallback(response) {
             mc.openGatepassList.splice(0, 0, response.data.message.open[0]);
@@ -109,13 +109,53 @@ function AppController($http, DocumentService) {
     mc.removeOpenGatepass = function (index) {
         mc.openGatepassList.splice(index, 1);
     };
+
     mc.addClosedGatepass = function (gatepass) {
-        mc.closedGatepassList.splice(0, 0, gatepass);
+        gatepass.transaction_date = moment(mc.workingDate).format('YYYY-MM-DD');
+        gatepass.warehouse = mc.warehouse.value;
+        gatepass.posting_date = gatepass.transaction_date;
+
+        return $http({
+            method: 'POST',
+            url: 'http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip_return',
+            data: $.param({
+                gatepass: JSON.stringify(gatepass),
+                sid: "237069ae502264b7cf90640385c8f4453ef4b7133ee25af7966ebb24"
+            })
+        }).then(function successCallback(response) {
+            var tripIndex = -1;
+            angular.forEach(mc.openGatepassList, function (trip, index) {
+                if (trip.name === gatepass.trip_id) {
+                    tripIndex = index;
+                }
+            });
+            mc.openGatepassList.splice(tripIndex, 1);
+            mc.closedGatepassList.splice(0, 0, response.data.message.closed[0]);
+
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+
+    };
+
+
+    mc.onRefresh = function (trip_id) {
+        return $http.get("http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?name=" + trip_id)
+            .then(function (data) {
+                console.log(data.data.message.open[0]);
+                var tripIndex = -1;
+                angular.forEach(mc.openGatepassList, function (trip, index) {
+                    if (trip.name === trip_id) {
+                        tripIndex = index;
+                    }
+                });
+                mc.openGatepassList.splice(tripIndex, 1, data.data.message.open[0]);
+                return data.data.message.open[0];
+            });
     };
 
     mc.closedGatepassList = [];
     mc.openGatepassList = [];
-
 
 
     mc.searchWarehouse = function (query) {
@@ -134,5 +174,7 @@ function AppController($http, DocumentService) {
                 mc.closedGatepassList = data.data.message.closed;
             });
     };
+
+    mc.onDateChange();
 
 }

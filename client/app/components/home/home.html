@@ -1,6 +1,32 @@
 <div layout="column" class="relative" layout-fill role="main">
-    <header></header>
-    <md-content flex md-scroll-y>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <div class="toolbar_left">
+                <h3> ERP </h3>
+                <div class="date_picker"> <span>Date</span>
+                    <md-datepicker ng-model="mc.workingDate" md-placeholder="Enter date" ng-change="mc.onDateChange()"> </md-datepicker>
+                </div>
+                <div class="warehouse">
+                    <p><i class="ion-ios-home-outline" aria-hidden="true"></i>warehouse</p>
+                    <md-autocomplete md-selected-item="mc.warehouse" md-item-text="item.value" md-items="item in mc.searchWarehouse(ctrl.txtWarehouse)" md-search-text="ctrl.txtWarehouse" md-min-length="0" placeholder="Select vehicle" md-no-cache="noCacheResults" ng-required="!mc.warehouse">
+                        <md-item-templat> <span md-highlight-text="ctrl.txtWarehouse" md-highlight-flags="^i">{{item.value}}</span> </md-item-templat>
+                        <md-not-found>
+                            No warehouse matching "{{ctrl.txtWarehouse}}" were found.
+                        </md-not-found>
+                    </md-autocomplete>
+                </div>
+            </div>
+            <div class="toolbar_right">
+                <div class="user_block"> <img src="img/user" alt="user" />
+                    <p>Username</p>
+                </div>
+            </div>
+        </div>
+    </md-toolbar>
+
+
+    <md-content>
+        <!--    <md-content ng-show="mc.warehouse && mc.warehouse.value != ''">-->
         <div layout="column" layout-fill="">
             <div layout="row" layout-align="center center" class="ng-scope">
                 <md-card flex-gt-sm="65" flex-gt-md="90" class="md-default-theme wrapper">

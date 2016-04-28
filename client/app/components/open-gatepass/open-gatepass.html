@@ -51,14 +51,10 @@
             <div class="row" style="display:inline-block">
                 <table class="openingstock_items">
                     <tr ng-repeat="(item, qty) in vm.closingStock" style="text-align:right;">
-                        <td>{{item}}</td>
+                        <td>{{item}} </td>
                         <td>{{vm.openningStock[item] || 0}}</td>
-                        <td class="sign">- </td>
                         <td> {{vm.grTotal.item_delivered[item] || 0}}</td>
-                        <td class="sign"> + </td>
                         <td>{{vm.grTotal.item_received[item] || 0}}</td>
-                        <td class="sign"> = </td>
-                        <!--                       <td>&nbsp;&nbsp;</td>-->
                         <td><span ng-class=" qty < 0? 'red_text bold':'' ">{{qty}}</span></td>
                     </tr>
                 </table>

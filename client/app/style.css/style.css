@@ -189,9 +189,9 @@ div[layout="column"] md-toolbar {
   .md-datepicker-calendar-pane .md-datepicker-calendar {
     background: #424242; }
   .md-datepicker-calendar-pane .md-pane-open .md-datepicker-calendar {
-    background: #424242 !important; }
+    background: #424242; }
   .md-datepicker-calendar-pane .md-calendar-date-today .md-calendar-date-selection-indicator {
-    color: #424242 !important; }
+    color: #424242; }
   .md-datepicker-calendar-pane .md-datepicker-input-container {
     border: 0; }
   .md-datepicker-calendar-pane .md-datepicker-button {

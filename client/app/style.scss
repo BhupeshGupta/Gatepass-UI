@@ -233,11 +233,11 @@ div[layout="column"] {
         background: #424242;
     }
     .md-pane-open .md-datepicker-calendar {
-        background: #424242 !important;
+        background: #424242;
     }
     .md-calendar-date-today {
         .md-calendar-date-selection-indicator {
-            color: #424242 !important;
+            color: #424242;
         }
     }
     .md-datepicker-input-container {
@@ -557,8 +557,6 @@ button {
         }
     }
 }
-button{
-    &[ng-required="false"]{
-
-    }
+button {
+    &[ng-required="false"] {}
 }

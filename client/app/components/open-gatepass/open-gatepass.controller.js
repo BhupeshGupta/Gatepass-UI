@@ -14,7 +14,7 @@ class OpenGatepassController {
         };
 
         vm.openningStock = {};
-        angular.forEach(vm.gatepass.outGatepass.item, function (value, index) {
+        angular.forEach(vm.gatepass.outGatepass.items, function (value, index) {
             vm.openningStock[value.item] = value.quantity;
         });
 
@@ -86,13 +86,19 @@ class OpenGatepassController {
                 vm.closingStock[key] = vm.openningStock[key] || 0;
                 vm.closingStock[key] += value;
             });
+
+            angular.forEach(vm.openningStock, function (qty, item) {
+                if (Object.keys(vm.closingStock).indexOf(item) == -1) {
+                    vm.closingStock[item] = qty;
+                }
+            });
         }
 
         calculate();
 
         if (!this.disabled) {
-            //            vm.addRow();
-            //            $timeout(vm.addRow, 10 * 1000);
+            //vm.addRow();
+            //$timeout(vm.addRow, 10 * 1000);
         }
 
         vm.refresh = function () {

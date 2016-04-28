@@ -34,7 +34,7 @@ angular.module('app', [
                 cmd: 'frappe.widgets.search.search_link',
                 _type: 'GET',
                 filters: JSON.stringify(filters),
-                sid: "c5ba0a8ee62012dee440734e4f56630d7de590926557e63b22d39d7f"
+                sid: "aec66acdab837e2f0f5117d8c53dcf5fc2091a8e9f590e860601dfb1"
             };
             var url = 'http://192.168.31.124:8080' + '?' + $.param(data);
             return $http({
@@ -72,17 +72,11 @@ function stateConfig($stateProvider, $urlRouterProvider, $compileProvider) {
     "ngInject";
     $urlRouterProvider.otherwise('/');
     $stateProvider.state('root', {
-            template: require('./components/home/home.html'),
-            url: '/loaded',
-            controller: AppController,
-            controllerAs: 'mc'
-        })
-        .state('loading', {
-            url: '/',
-            template: '<p>Select Warehouse</p>',
-            controller: AppController,
-            controllerAs: 'mc'
-        });
+        template: require('./components/home/home.html'),
+        url: '/',
+        controller: AppController,
+        controllerAs: 'mc'
+    });
 }
 
 
@@ -100,7 +94,7 @@ function AppController($http, DocumentService) {
             url: 'http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip',
             data: $.param({
                 gatepass: JSON.stringify(gatepass),
-                sid: "c5ba0a8ee62012dee440734e4f56630d7de590926557e63b22d39d7f"
+                sid: "aec66acdab837e2f0f5117d8c53dcf5fc2091a8e9f590e860601dfb1"
             })
         }).then(function successCallback(response) {
             mc.openGatepassList.splice(0, 0, response.data.message.open[0]);
@@ -125,7 +119,7 @@ function AppController($http, DocumentService) {
             url: 'http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip_return',
             data: $.param({
                 gatepass: JSON.stringify(gatepass),
-                sid: "c5ba0a8ee62012dee440734e4f56630d7de590926557e63b22d39d7f"
+                sid: "aec66acdab837e2f0f5117d8c53dcf5fc2091a8e9f590e860601dfb1"
             })
         }).then(function successCallback(response) {
             var tripIndex = -1;

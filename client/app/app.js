@@ -34,8 +34,7 @@ angular.module('app', [
                 cmd: 'frappe.widgets.search.search_link',
                 _type: 'GET',
                 filters: JSON.stringify(filters),
-
-                sid: "237069ae502264b7cf90640385c8f4453ef4b7133ee25af7966ebb24"
+                sid: "c5ba0a8ee62012dee440734e4f56630d7de590926557e63b22d39d7f"
             };
             var url = 'http://192.168.31.124:8080' + '?' + $.param(data);
             return $http({
@@ -73,11 +72,17 @@ function stateConfig($stateProvider, $urlRouterProvider, $compileProvider) {
     "ngInject";
     $urlRouterProvider.otherwise('/');
     $stateProvider.state('root', {
-        template: require('./components/home/home.html'),
-        url: '/',
-        controller: AppController,
-        controllerAs: 'mc'
-    });
+            template: require('./components/home/home.html'),
+            url: '/loaded',
+            controller: AppController,
+            controllerAs: 'mc'
+        })
+        .state('loading', {
+            url: '/',
+            template: '<p>Select Warehouse</p>',
+            controller: AppController,
+            controllerAs: 'mc'
+        });
 }
 
 
@@ -95,7 +100,7 @@ function AppController($http, DocumentService) {
             url: 'http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip',
             data: $.param({
                 gatepass: JSON.stringify(gatepass),
-                sid: "237069ae502264b7cf90640385c8f4453ef4b7133ee25af7966ebb24"
+                sid: "c5ba0a8ee62012dee440734e4f56630d7de590926557e63b22d39d7f"
             })
         }).then(function successCallback(response) {
             mc.openGatepassList.splice(0, 0, response.data.message.open[0]);
@@ -120,7 +125,7 @@ function AppController($http, DocumentService) {
             url: 'http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip_return',
             data: $.param({
                 gatepass: JSON.stringify(gatepass),
-                sid: "237069ae502264b7cf90640385c8f4453ef4b7133ee25af7966ebb24"
+                sid: "c5ba0a8ee62012dee440734e4f56630d7de590926557e63b22d39d7f"
             })
         }).then(function successCallback(response) {
             var tripIndex = -1;
@@ -156,6 +161,8 @@ function AppController($http, DocumentService) {
 
     mc.closedGatepassList = [];
     mc.openGatepassList = [];
+    mc.notificationsList = [];
+
 
 
     mc.searchWarehouse = function (query) {
@@ -172,9 +179,11 @@ function AppController($http, DocumentService) {
             .then(function (data) {
                 mc.openGatepassList = data.data.message.open;
                 mc.closedGatepassList = data.data.message.closed;
+                mc.notificationsList = data.data.message.notifications;
             });
     };
 
     mc.onDateChange();
+
 
 }

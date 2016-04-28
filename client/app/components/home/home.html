@@ -1,31 +1,5 @@
 <div layout="column" class="relative" layout-fill role="main">
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <div class="toolbar_left md-default-theme">
-                <h3> ERP </h3>
-                <div class="date_picker"> <span>Date</span>
-                    <md-datepicker ng-model="mc.workingDate" md-placeholder="Enter date" ng-change="mc.onDateChange()"> </md-datepicker>
-                </div>
-                <div class="warehouse">
-                    <p><i class="ion-ios-home-outline" aria-hidden="true"></i>warehouse</p>
-                    <md-autocomplete md-selected-item="mc.warehouse" md-item-text="item.value" md-items="item in mc.searchWarehouse(ctrl.txtWarehouse)" md-search-text="ctrl.txtWarehouse" md-min-length="0" placeholder="Select Location">
-                        <md-item-template>
-                            <span md-highlight-text="ctrl.txtWarehouse" md-highlight-flags="^i">{{item.value}}</span>
-                        </md-item-template>
-                        <md-not-found>
-                            No warehouse matching "{{ctrl.txtWarehouse}}" were found.
-                        </md-not-found>
-                    </md-autocomplete>
-                </div>
-            </div>
-            <span flex=""></span>
-            <div class="toolbar_right md-default-theme">
-                <div class="user_block"> <img src="img/user" alt="user" />
-                    <p>Username</p>
-                </div>
-            </div>
-        </div>
-    </md-toolbar>
+    <header></header>
     <md-content flex md-scroll-y>
         <div layout="column" layout-fill="">
             <div layout="row" layout-align="center center" class="ng-scope">
@@ -48,11 +22,10 @@
                                         <div class="notifications_block">
                                             <h1>Notifications</h1>
                                             <ul>
-                                                <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
-                                                <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
-                                                <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
-                                                <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
-                                                <li> <a href="#"><i class="ion-levels"></i>Notification1</a> </li>
+                                                <li ng-repeat="notification in mc.notificationsList">
+                                                    <span> <a class="tripid" href="#"><i class="ion-android-train"></i>{{notification.name}}</a> <a href="#"><i class="ion-android-bus "></i>{{notification.vehicle}}</a></span>
+                                                    <span><a href="#"><i class="ion-arrow-up-a"></i>{{notification.out_gatepass}}</a><a href="#"><i class="ion-android-calendar"></i>{{notification.date}}</a></span>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -78,8 +51,7 @@
                             <!-- open gatepass start here -->
                             <md-item class="opengatepass list_contain close_gatepss">
                                 <div class="md-toolbar-tools main_heading">
-                                    <h1>Close</h1>
-                                </div>
+                                    <h1>Close</h1> </div>
                                 <div layout="row">
                                     <div flex="100" class="ptn-info-grid">
                                         <div class="close_gatepass" ng-repeat="gatepass in mc.closedGatepassList track by $index">
@@ -94,6 +66,9 @@
                     </md-card-content>
                 </md-card>
             </div>
+        </div>
+        <div class="reqired_fields ">
+            <p ng-show="warehouse.$error.required "> warehouse This is required!</p>
         </div>
     </md-content>
 </div>

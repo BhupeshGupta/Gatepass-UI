@@ -353,8 +353,7 @@ md-item {
     }
 }
 .notifications_block {
-    border: 1px solid #e1e1e1;
-    padding: 20px;
+    padding: 0 10px 10px 10px;
     margin: 15px 15px 20px 15px;
     width: 100%;
     h1 {
@@ -364,23 +363,45 @@ md-item {
         margin: 0 0 20px 0;
     }
     ul {
-        background: #f3f3f3;
         padding: 0;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+        width: 100%;
         li {
             list-style: none;
+            display: inline-block;
+            background: #f3f3f3;
+            padding: 7px;
+            width: 96%;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 1px;
+            border-radius: 3px;
             i {
                 font-size: 18px;
                 margin: 0 15px;
             }
             a {
-                color: #424242;
-                font-size: 14px;
+                color: #666;
+                font-size: 13px;
                 font-weight: 400;
                 text-decoration: none;
-                border-bottom: 1px solid #e1e1e1;
-                padding: 15px 5px;
+                padding: 2px 0px;
+                background: #f3f3f3;
+                width: 46%;
+                display: inline-block;
+                &.tripid {
+                    font-weight: bold;
+                    font-size: 14px;
+                    i {
+                        color: #666
+                    }
+                }
+                i {
+                    margin: 0 10px 0 5px;
+                    color: #888;
+                }
+            }
+            span {
                 display: block;
+                width: 100%;
             }
         }
     }
@@ -501,13 +522,10 @@ input[type="date"]::-webkit-inner-spin-button {
     open-gatepass {
         .submit_button {
             button {
-                &:[disabled="disabled"] {
-                    display: none;
-                }
+                //                    &:[disabled="disabled"] {
+                //                    display: none;
+                //                }
             }
-        }
-        .viwe_more_card {
-            display: none;
         }
     }
 }
@@ -523,5 +541,24 @@ button {
     }
     i {
         font-size: 25px;
+    }
+}
+.md-toolbar-tools {
+    width: 100%;
+    .toolbar_left {
+        float: left;
+        width: 85%;
+    }
+    .toolbar_right {
+        float: right;
+        width: 200px;
+        .user_block {
+            float: right;
+        }
+    }
+}
+button{
+    &[ng-required="false"]{
+
     }
 }

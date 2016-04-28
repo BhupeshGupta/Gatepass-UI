@@ -1,4 +1,5 @@
 import angular from 'angular';
+import header from './header/header';
 import openGatepass from './open-gatepass/open-gatepass';
 import newVoucher from './new-voucher/new-voucher';
 import closeGatepass from './close-gatepass/close-gatepass';
@@ -8,6 +9,7 @@ import pumpView from './pump-view/pump-view';
 
 
 let componentModule = angular.module('app.components', [
+    header.name,
     openGatepass.name,
     newVoucher.name,
     closeGatepass.name,

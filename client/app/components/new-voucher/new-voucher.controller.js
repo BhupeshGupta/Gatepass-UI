@@ -19,6 +19,8 @@ function NewVoucherController(DocumentService, $element) {
             }
         };
         // new items
+
+      
         var newItems = [];
         angular.forEach(gatepass.items, function (value, key) {
             newItems.push({

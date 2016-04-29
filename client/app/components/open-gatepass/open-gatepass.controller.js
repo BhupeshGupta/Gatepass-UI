@@ -108,7 +108,7 @@ class OpenGatepassController {
                 vm.gatepass = data;
                 calculate();
             });
-        }
+        };
 
         vm.submit = function () {
             var gatepass = angular.copy(vm.gatepass.inGatepass);

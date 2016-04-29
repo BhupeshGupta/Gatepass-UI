@@ -34,7 +34,7 @@ angular.module('app', [
                 cmd: 'frappe.widgets.search.search_link',
                 _type: 'GET',
                 filters: JSON.stringify(filters),
-                sid: "aec66acdab837e2f0f5117d8c53dcf5fc2091a8e9f590e860601dfb1"
+                sid: "d241ed64bec6746fccb95918478fc1cec1b35d92e754186f947f590e"
             };
             var url = 'http://192.168.31.124:8080' + '?' + $.param(data);
             return $http({
@@ -94,7 +94,7 @@ function AppController($http, DocumentService) {
             url: 'http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip',
             data: $.param({
                 gatepass: JSON.stringify(gatepass),
-                sid: "aec66acdab837e2f0f5117d8c53dcf5fc2091a8e9f590e860601dfb1"
+                sid: "d241ed64bec6746fccb95918478fc1cec1b35d92e754186f947f590e"
             })
         }).then(function successCallback(response) {
             mc.openGatepassList.splice(0, 0, response.data.message.open[0]);
@@ -119,7 +119,7 @@ function AppController($http, DocumentService) {
             url: 'http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip_return',
             data: $.param({
                 gatepass: JSON.stringify(gatepass),
-                sid: "aec66acdab837e2f0f5117d8c53dcf5fc2091a8e9f590e860601dfb1"
+                sid: "d241ed64bec6746fccb95918478fc1cec1b35d92e754186f947f590e"
             })
         }).then(function successCallback(response) {
             var tripIndex = -1;
@@ -169,7 +169,7 @@ function AppController($http, DocumentService) {
     // on date change
     mc.onDateChange = function () {
         var date = moment(mc.workingDate).format('YYYY-MM-DD');
-        $http.get("http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?from_date=" + date + "&to_date=" + date)
+        $http.get("http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?from_date=" + date + "&to_date=" + date + "&sid=d241ed64bec6746fccb95918478fc1cec1b35d92e754186f947f590e")
             .then(function (data) {
                 mc.openGatepassList = data.data.message.open;
                 mc.closedGatepassList = data.data.message.closed;

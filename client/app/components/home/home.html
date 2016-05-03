@@ -25,8 +25,8 @@
     </md-toolbar>
 
 
-    <md-content>
-        <!--    <md-content ng-show="mc.warehouse && mc.warehouse.value != ''">-->
+    <md-content ng-if="mc.warehouse && mc.warehouse.value != ''">
+        <!--        <md-content ng-if="mc.warehouse && mc.warehouse.value != ''">-->
         <div layout="column" layout-fill="">
             <div layout="row" layout-align="center center" class="ng-scope">
                 <md-card flex-gt-sm="65" flex-gt-md="90" class="md-default-theme wrapper">
@@ -69,6 +69,7 @@
                                         <div class="card_wrap" ng-repeat="gatepass in mc.openGatepassList track by $index">
                                             <open-gatepass gatepass="gatepass" disabled="false" on-refresh="mc.onRefresh(tripid)" on-submit="mc.addClosedGatepass(gatepass);"></open-gatepass>
                                         </div>
+                                        <div ng-hide="mc.openGatepassList.length" class="empty_block"><i class="ion-ios-checkmark"></i>Good work , Not any Open Gatepass !</div>
                                     </div>
                                 </div>
                             </md-item>
@@ -77,12 +78,14 @@
                             <!-- open gatepass start here -->
                             <md-item class="opengatepass list_contain close_gatepss">
                                 <div class="md-toolbar-tools main_heading">
-                                    <h1>Close</h1> </div>
+                                    <h1>Close</h1>
+                                </div>
                                 <div layout="row">
                                     <div flex="100" class="ptn-info-grid">
                                         <div class="close_gatepass" ng-repeat="gatepass in mc.closedGatepassList track by $index">
-                                            <open-gatepass gatepass="gatepass" disabled="true"></open-gatepass>
+                                            <open-gatepass gatepass="gatepass" disabled="true" on-refresh="mc.onRefresh(tripid)"></open-gatepass>
                                         </div>
+                                        <div ng-hide="mc.closedGatepassList.length" class="empty_block">Not any Closed Gatepass</div>
                                     </div>
                                 </div>
                             </md-item>

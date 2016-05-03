@@ -2,7 +2,7 @@
     <div layout="row">
         <div class="input_group full_width">
             <label class="flex-17" for="Pump">Pump</label>
-            <md-autocomplete md-selected-item="pfc.gatepass.fuel_pump" md-item-text="item.value" md-items="item in pfc.searchPump(ctrl.txtPump)" md-search-text="ctrl.txtPump" md-min-length="0" placeholder="Select vehicle" ng-required="(pfc.gatepass.fuel_pump || pfc.gatepass.mobiloil || pfc.gatepass.fuel_quantity || fuel_slip_id)">
+            <md-autocomplete md-selected-item="pfc.gatepass.fuel_pump" md-item-text="item.value" md-items="item in pfc.searchPump(ctrl.txtPump)" md-search-text="ctrl.txtPump" md-min-length="0" placeholder="Select vehicle" ng-required="(pfc.gatepass.fuel_pump || pfc.gatepass.mobiloil || pfc.gatepass.fuel_quantity || pfc.gatepass.fuel_slip_id)">
                 <!--               <md-content ng-show="mc.warehouse && mc.warehouse.value != ''">-->
                 <md-item-template>
                     <span md-highlight-text="ctrl.txtPump" md-highlight-flags="^i">{{item.value}}</span>
@@ -16,23 +16,23 @@
     <div layout="row">
         <div class="input_group">
             <label class="" for="Fuel Id">Fuel Id </label>
-            <input type="text" ng-model="pfc.gatepass.fuel_slip_id" ng-required="(pfc.gatepass.fuel_pump || pfc.gatepass.mobiloil || pfc.gatepass.fuel_quantity || fuel_slip_id)">
+            <input type="text" ng-model="pfc.gatepass.fuel_slip_id" ng-required="(pfc.gatepass.fuel_pump || pfc.gatepass.mobiloil || pfc.gatepass.fuel_quantity || pfc.gatepass.fuel_slip_id)">
         </div>
-        <div class=" input_group " id=" popupContainer ">
-            <label class=" " for="expense ">Expense </label>
-            <input type="text " ng-click="pfc.showAdvanced($event) ">
+        <div class=" input_group " id="popupContainer">
+            <label for="expense ">Expense </label>
+            <p class="pump_form" ng-click="pfc.showAdvanced($event)"></p>
         </div>
     </div>
     <!-- good details  block end -->
 </div>
 <div layout="row ">
     <div class="input_group ">
-        <label class=" " for="quantity ">Quantity</label>
-        <input ng-model="pfc.gatepass.fuel_quantity " type="number " ng-required="(pfc.gatepass.fuel_pump || pfc.gatepass.mobiloil || pfc.gatepass.fuel_quantity || fuel_slip_id)">
+        <label for="quantity ">Quantity</label>
+        <input ng-model="pfc.gatepass.fuel_quantity " type="number " ng-required="(pfc.gatepass.fuel_pump || pfc.gatepass.mobiloil || pfc.gatepass.fuel_quantity || pfc.gatepass.fuel_slip_id)">
     </div>
     <div class="input_group ">
         <label for="mobil_oil ">Mobil oil</label>
-        <input type="number " ng-model="pfc.gatepass.mobiloil " ng-required="(pfc.gatepass.fuel_pump || pfc.gatepass.mobiloil || pfc.gatepass.fuel_quantity || fuel_slip_id)">
+        <input type="number" ng-model="pfc.gatepass.mobiloil " ng-required="(pfc.gatepass.fuel_pump || pfc.gatepass.mobiloil || pfc.gatepass.fuel_quantity || pfc.gatepass.fuel_slip_id)">
 
     </div>
     <!-- good details  block end -->

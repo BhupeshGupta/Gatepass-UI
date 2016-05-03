@@ -442,3 +442,28 @@ button i {
     width: 200px; }
     .md-toolbar-tools .toolbar_right .user_block {
       float: right; }
+
+.close_gatepass {
+  margin: 15px !important;
+  display: block;
+  border: 1px solid #ccc; }
+  .close_gatepass .refresh_icon {
+    display: none !important; }
+
+.empty_block {
+  padding: 20px 0 20px 0;
+  text-align: center; }
+  .empty_block i {
+    display: block;
+    font-size: 50px;
+    padding: 4px 0 10px 0;
+    color: lightgreen; }
+
+.pump_form {
+  border: 1px solid #e1e1e1;
+  padding: 0 0 0 10px;
+  height: 30px;
+  font-size: 13px !important;
+  margin-top: 0 !important;
+  background: none;
+  width: 55%; }

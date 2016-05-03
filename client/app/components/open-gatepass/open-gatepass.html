@@ -39,7 +39,7 @@
             <!-- pump detail end here -->
         </div>
         <!-- open gate col2 start here -->
-        <div class="column col-3">
+        <div class="column col-3 open-col-2">
             <div layout="row" layout-margin layout-fill class="list_block border-left pd_l20">
                 <ul class="item_detail" ng-class="{collaps: editorEnabled}">
                     <li ng-repeat="txn in vm.gatepass.transactions"><strong>{{txn.customer}}</strong> {{txn.name}} &nbsp - &nbsp {{txn.item_delivered}}({{txn.delivered_quantity}}) &nbsp/&nbsp {{txn.item_received}}({{txn.received_quantity}})</li>
@@ -47,17 +47,17 @@
             </div>
             <div layout="row" layout-margin layout-fill class="list_block border-left pd_l25"></div>
         </div>
-        <div class="column col-3">
-            <div class="row" style="display:inline-block">
-                <table class="openingstock_items">
-                    <tr ng-repeat="(item, qty) in vm.closingStock" style="text-align:right;">
-                        <td>{{item}} </td>
-                        <td>{{vm.openningStock[item] || 0}}</td>
-                        <td> {{vm.grTotal.item_delivered[item] || 0}}</td>
-                        <td>{{vm.grTotal.item_received[item] || 0}}</td>
-                        <td><span ng-class=" qty < 0? 'red_text bold':'' ">{{qty}}</span></td>
-                    </tr>
-                </table>
+        <div class="column col-3 open-col-3">
+            <div class="opening_stock_dtl">
+
+                <ul ng-class="item.css" ng-repeat="item in vm.gatepass.closingCalculations">
+                    <li>{{item.name}} </li>
+                    <li>{{item.opening || 0}}</li>
+                    <li>- {{item.out || 0}}</li>
+                    <li>+ {{item.in || 0}}</li>
+                    <li><span ng-class="item.closing < 0? 'red_text bold':'' ">{{item.closing}}</span></li>
+                </ul>
+
             </div>
             <div layout="row" layout-margin layout-fill class="list_block  pd_l20 mat_list" ng-init="vm.gatepass.inGatepass={}"></div>
             <div layout="row" layout-fill class="list_block  pd_l20 exapand_block">

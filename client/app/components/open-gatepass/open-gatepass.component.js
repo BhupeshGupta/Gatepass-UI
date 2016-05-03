@@ -10,7 +10,6 @@ let openGatepassComponent = {
         disabled: '=',
         onSubmit: '&',
         onRefresh: '&',
-
     },
     template,
     controller: OpenGatepassController,

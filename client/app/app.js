@@ -34,9 +34,9 @@ angular.module('app', [
                 cmd: 'frappe.widgets.search.search_link',
                 _type: 'GET',
                 filters: JSON.stringify(filters),
-                sid: "d241ed64bec6746fccb95918478fc1cec1b35d92e754186f947f590e"
+                sid: "8af727cb91f67623029099363c736f5a9b2b951aafb8dfd77825ba0d"
             };
-            var url = 'http://192.168.31.124:8080' + '?' + $.param(data);
+            var url = 'http://192.168.31.195:8080' + '?' + $.param(data);
             return $http({
                 url: url,
                 loading: true,
@@ -91,18 +91,16 @@ function AppController($http, DocumentService) {
 
         $http({
             method: 'POST',
-            url: 'http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip',
+            url: 'http://192.168.31.195:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip',
             data: $.param({
                 gatepass: JSON.stringify(gatepass),
-                sid: "d241ed64bec6746fccb95918478fc1cec1b35d92e754186f947f590e"
+                sid: "8af727cb91f67623029099363c736f5a9b2b951aafb8dfd77825ba0d"
             })
         }).then(function successCallback(response) {
             mc.openGatepassList.splice(0, 0, response.data.message.open[0]);
         }, function errorCallback(response) {
             console.log(response);
         });
-
-
     };
 
     mc.removeOpenGatepass = function (index) {
@@ -116,10 +114,10 @@ function AppController($http, DocumentService) {
 
         return $http({
             method: 'POST',
-            url: 'http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip_return',
+            url: 'http://192.168.31.195:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip_return',
             data: $.param({
                 gatepass: JSON.stringify(gatepass),
-                sid: "d241ed64bec6746fccb95918478fc1cec1b35d92e754186f947f590e"
+                sid: "3bc67047c695ad5d43f3542012a7284c4cdae2ea86ebf4366a8a624b"
             })
         }).then(function successCallback(response) {
             var tripIndex = -1;
@@ -139,7 +137,7 @@ function AppController($http, DocumentService) {
 
 
     mc.onRefresh = function (trip_id) {
-        return $http.get("http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?name=" + trip_id)
+        return $http.get("http://192.168.31.195:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?name=" + trip_id + "&sid=8af727cb91f67623029099363c736f5a9b2b951aafb8dfd77825ba0d")
             .then(function (data) {
                 console.log(data.data.message.open[0]);
                 var tripIndex = -1;
@@ -148,8 +146,8 @@ function AppController($http, DocumentService) {
                         tripIndex = index;
                     }
                 });
-                mc.openGatepassList.splice(tripIndex, 1, data.data.message.open[0]);
-                return data.data.message.open[0];
+                mc.openGatepassList.splice(tripIndex, 1, (data.data.message.open || data.data.message.open)[0]);
+                return (data.data.message.open || data.data.message.open)[0];
             });
     };
 
@@ -169,7 +167,7 @@ function AppController($http, DocumentService) {
     // on date change
     mc.onDateChange = function () {
         var date = moment(mc.workingDate).format('YYYY-MM-DD');
-        $http.get("http://192.168.31.124:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?from_date=" + date + "&to_date=" + date + "&sid=d241ed64bec6746fccb95918478fc1cec1b35d92e754186f947f590e")
+        $http.get("http://192.168.31.195:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?from_date=" + date + "&to_date=" + date + "&sid=8af727cb91f67623029099363c736f5a9b2b951aafb8dfd77825ba0d")
             .then(function (data) {
                 mc.openGatepassList = data.data.message.open;
                 mc.closedGatepassList = data.data.message.closed;

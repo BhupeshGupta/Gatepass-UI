@@ -1,0 +1,55 @@
+<!-- USING ROW FOR DESKTOP AND COLUMN FOR MOBILE DEVICES -->
+
+<md-content>
+    <div class="login">
+        <div class="login_container">
+            <div class="login_header">
+                <ul>
+                    <li><i class="ion-ios-speedometer-outline"></i><span>Trip Management</span></li>
+                </ul>
+            </div>
+            <div layout="column" layout-fill="">
+                <div class="logo">
+                    <img src="app/images/logo.png" alt="Logo">
+                </div>
+                <div layout="row" layout-align="center center" class="ng-scope">
+                    <md-card class="md-default-theme wrapper">
+                        <md-card-content class="pd0">
+                            <md-list role="list" class="pd0">
+                                <!-- vocher1 start here -->
+
+                                <div class="md-toolbar-tools main_heading">
+                                    <h1>LOGIN</h1>
+                                </div>
+
+                                <!-- new Voucher list start here -->
+                                <md-item>
+
+                                    <form>
+                                        <div class="input-group">
+                                            <label class="item item-input"><span class="input-label">Email ID</span></label>
+                                            <input type="text" ng-model="loginData.username">
+                                        </div>
+                                        <div class="input-group password">
+                                            <label class="item item-input">
+                                                <span class="input-label" ng-init="passwordInputType = 'password'">Password</span></label>
+                                            <input type="{{passwordInputType}}" ng-model="loginData.password">
+                                            <a class="button button-clear" style="padding-right: 15%" on-tap="passwordInputType = { 'password': 'text', 'text': 'password'}[passwordInputType];">
+                                                <i class="icon ion-ios-eye"></i>
+                                            </a>
+                                        </div>
+                                        <div class="item login_btn">
+                                            <button class="button button-block button-dark" ng-click="lc.login()">Log In</button>
+                                        </div>
+                                    </form>
+                                </md-item>
+                                <!-- new voucher list end here -->
+
+                            </md-list>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</md-content>

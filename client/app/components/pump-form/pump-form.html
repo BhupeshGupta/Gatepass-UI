@@ -2,7 +2,7 @@
     <div layout="row">
         <div class="input_group full_width">
             <label class="flex-17" for="Pump">Pump</label>
-            <md-autocomplete md-selected-item="pfc.gatepass.fuel_pump" md-item-text="item.value" md-items="item in pfc.searchPump(ctrl.txtPump)" md-search-text="ctrl.txtPump" md-min-length="0" placeholder="Select vehicle" ng-required="(pfc.gatepass.fuel_pump || pfc.gatepass.mobiloil || pfc.gatepass.fuel_quantity || pfc.gatepass.fuel_slip_id)">
+            <md-autocomplete md-selected-item="pfc.gatepass.fuel_pump" md-item-text="item.value" md-items="item in pfc.searchPump(ctrl.txtPump)" md-search-text="ctrl.txtPump" md-min-length="0" placeholder="Select Pump" ng-required="(pfc.gatepass.fuel_pump || pfc.gatepass.mobiloil || pfc.gatepass.fuel_quantity || pfc.gatepass.fuel_slip_id)">
                 <!--               <md-content ng-show="mc.warehouse && mc.warehouse.value != ''">-->
                 <md-item-template>
                     <span md-highlight-text="ctrl.txtPump" md-highlight-flags="^i">{{item.value}}</span>

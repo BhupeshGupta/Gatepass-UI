@@ -8,7 +8,7 @@
                 </div>
                 <div class="warehouse">
                     <p><i class="ion-ios-home-outline" aria-hidden="true"></i>warehouse</p>
-                    <md-autocomplete md-selected-item="mc.warehouse" md-item-text="item.value" md-items="item in mc.searchWarehouse(ctrl.txtWarehouse)" md-search-text="ctrl.txtWarehouse" md-min-length="0" placeholder="Select vehicle" md-no-cache="noCacheResults" ng-required="!mc.warehouse">
+                    <md-autocomplete md-selected-item="mc.warehouse" md-item-text="item.value" md-items="item in mc.searchWarehouse(ctrl.txtWarehouse)" md-search-text="ctrl.txtWarehouse" md-min-length="0" placeholder="Select Warehouse" md-no-cache="noCacheResults" ng-required="!mc.warehouse">
                         <md-item-templat> <span md-highlight-text="ctrl.txtWarehouse" md-highlight-flags="^i">{{item.value}}</span> </md-item-templat>
                         <md-not-found>
                             No warehouse matching "{{ctrl.txtWarehouse}}" were found.
@@ -17,8 +17,10 @@
                 </div>
             </div>
             <div class="toolbar_right">
-                <div class="user_block"> <img src="img/user" alt="user" />
-                    <p>Username</p>
+                <div class="user_block">
+                    <p>
+                        <!--   <img src="img/user" alt="user" />-->{{mc.settings.full_name}}</p>
+                    <span ng-click="mc.logout()">Logout</span>
                 </div>
             </div>
         </div>
@@ -26,7 +28,13 @@
 
 
     <md-content ng-if="mc.warehouse && mc.warehouse.value != ''">
-        <!--        <md-content ng-if="mc.warehouse && mc.warehouse.value != ''">-->
+        <!-- <md-content ng-if="mc.warehouse && mc.warehouse.value != ''">-->
+        <div id="popuperror">
+            <div class="dialog-demo-content" layout="row" ayout="row" layout-wrap layout-margin layout-align="center">
+
+
+            </div>
+        </div>
         <div layout="column" layout-fill="">
             <div layout="row" layout-align="center center" class="ng-scope">
                 <md-card flex-gt-sm="65" flex-gt-md="90" class="md-default-theme wrapper">

@@ -20,7 +20,7 @@ function NewVoucherController(DocumentService, $element) {
         };
         // new items
 
-      
+
         var newItems = [];
         angular.forEach(gatepass.items, function (value, key) {
             newItems.push({
@@ -44,14 +44,16 @@ function NewVoucherController(DocumentService, $element) {
 
         vm.onCreation({
             gatepass: gatepass
+        }).then(() => {
+            var autoComp = $($element).find('md-autocomplete-wrap');
+
+            autoComp.each(function (index, elem) {
+                angular.element(elem).scope().$mdAutocompleteCtrl.clear();
+            });
+            vm.gatepass = {};
         });
 
-        var autoComp = $($element).find('md-autocomplete-wrap');
 
-        autoComp.each(function (index, elem) {
-            angular.element(elem).scope().$mdAutocompleteCtrl.clear();
-        });
-        vm.gatepass = {};
     };
 
 

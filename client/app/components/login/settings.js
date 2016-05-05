@@ -10,14 +10,14 @@ function settingsFactory() {
         get: _retrieveSettings,
         set: _saveSettings,
         getERPServerBaseUrl: function () {
-            return 'http://192.168.31.195:8080';
-            return 'http://192.168.31.195:8080';
+            return 'https://erp.arungas.com';
+            //            return 'http://192.168.31.195:8080';
         },
         getSid: function () {
             return _retrieveSettings().sid;
         },
         getReviewServerBaseUrl: function () {
-            return 'http://192.168.31.195:8080';
+            //            return 'http://192.168.31.195:8080';
         }
     };
 

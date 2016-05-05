@@ -9,9 +9,6 @@ angular.module('app', [
     'ngMdIcons',
     Components.name
 ])
-    .config(($locationProvider) => {
-        "ngInject";
-    })
 
 .config(stateConfig)
 
@@ -23,9 +20,72 @@ angular.module('app', [
 
 .config(function ($httpProvider) {
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+    $httpProvider.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest';
 })
 
-.factory('DocumentService', function ($http) {
+.run(function ($rootScope, $state) {
+    $rootScope.$on('login:success', function () {
+        $state.go('root');
+    });
+})
+
+// UA & Error Interceptor
+.config(function ($httpProvider) {
+    var popUp = null;
+    $httpProvider.interceptors.push(function ($injector, $q) {
+        return {
+            responseError: function (rejection) {
+                var stat = rejection.status;
+                var msg = '';
+
+                // Solve circular dependency
+                var $mdDialog = $injector.get('$mdDialog');
+
+                console.log(rejection);
+
+                // ERP specific error extraction
+                if (rejection.data && rejection.data.message)
+                    msg = rejection.data.message;
+                else if (rejection.data && rejection.data._server_messages)
+                    msg = JSON.parse(rejection.data._server_messages).join('\n');
+
+                // Generic error extraction
+                else if (stat == 403) {
+                    //                    var SessionService = $injector.get('SessionService');
+                    msg = 'Login Required';
+                    //                    $timeout(function () {
+                    //                        SessionService.logout();
+                    //                    }, 0);
+                } else if (stat == 500)
+                    msg = 'Internal Server Error';
+                else if (stat == 501)
+                    msg = 'Server Error';
+                else if (stat == 502)
+                    msg = 'Server is Offline';
+                else if (stat == 503)
+                    msg = 'Server is Overload or down';
+                else if (stat == 504)
+                    msg = 'Server is Offline';
+
+                if (msg !== '')
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popuperror')))
+                        .clickOutsideToClose(true)
+                        .title('Error')
+                        .textContent(msg)
+                        .ariaLabel('Alert Dialog Demo')
+                        .ok('OK')
+                    );
+
+                return $q.reject(rejection);
+            }
+        };
+    });
+})
+
+
+.factory('DocumentService', function ($http, SettingsFactory) {
     var factory = {
         search: function (documentType, query, filters) {
             var data = {
@@ -34,9 +94,9 @@ angular.module('app', [
                 cmd: 'frappe.widgets.search.search_link',
                 _type: 'GET',
                 filters: JSON.stringify(filters),
-                sid: "8af727cb91f67623029099363c736f5a9b2b951aafb8dfd77825ba0d"
+                sid: SettingsFactory.getSid()
             };
-            var url = 'http://192.168.31.195:8080' + '?' + $.param(data);
+            var url = SettingsFactory.getERPServerBaseUrl() + '?' + $.param(data);
             return $http({
                 url: url,
                 loading: true,
@@ -56,7 +116,7 @@ angular.module('app', [
                 method: 'POST',
                 data: $.param({
                     data: JSON.stringify(document),
-                    sid: SessionService.getToken(),
+                    sid: SettingsFactory.getSid(),
                     client: "app"
                 })
             });
@@ -71,30 +131,39 @@ angular.module('app', [
 function stateConfig($stateProvider, $urlRouterProvider, $compileProvider) {
     "ngInject";
     $urlRouterProvider.otherwise('/');
-    $stateProvider.state('root', {
-        template: require('./components/home/home.html'),
-        url: '/',
-        controller: AppController,
-        controllerAs: 'mc'
-    });
+    $stateProvider
+        .state('login', {
+            template: '<login></login>',
+            url: '/',
+            controller: AppController,
+            controllerAs: 'mc'
+        })
+        .state('root', {
+            url: '/home',
+            template: require('./components/home/home.html'),
+            controller: AppController,
+            controllerAs: 'mc'
+        });
 }
 
 
 
-function AppController($http, DocumentService) {
+function AppController($http, DocumentService, SettingsFactory, $state) {
     var mc = this;
+
+    mc.settings = SettingsFactory.get();
 
     mc.addOpenGatepass = function (gatepass) {
         gatepass.transaction_date = moment(mc.workingDate).format('YYYY-MM-DD');
         gatepass.warehouse = mc.warehouse.value;
         gatepass.posting_date = gatepass.transaction_date;
 
-        $http({
+        return $http({
             method: 'POST',
-            url: 'http://192.168.31.195:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip',
+            url: SettingsFactory.getERPServerBaseUrl() + '/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip',
             data: $.param({
                 gatepass: JSON.stringify(gatepass),
-                sid: "8af727cb91f67623029099363c736f5a9b2b951aafb8dfd77825ba0d"
+                sid: SettingsFactory.getSid()
             })
         }).then(function successCallback(response) {
             mc.openGatepassList.splice(0, 0, response.data.message.open[0]);
@@ -114,10 +183,10 @@ function AppController($http, DocumentService) {
 
         return $http({
             method: 'POST',
-            url: 'http://192.168.31.195:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip_return',
+            url: SettingsFactory.getERPServerBaseUrl() + '/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.create_trip_return',
             data: $.param({
                 gatepass: JSON.stringify(gatepass),
-                sid: "3bc67047c695ad5d43f3542012a7284c4cdae2ea86ebf4366a8a624b"
+                sid: SettingsFactory.getSid()
             })
         }).then(function successCallback(response) {
             var tripIndex = -1;
@@ -137,7 +206,7 @@ function AppController($http, DocumentService) {
 
 
     mc.onRefresh = function (trip_id) {
-        return $http.get("http://192.168.31.195:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?name=" + trip_id + "&sid=8af727cb91f67623029099363c736f5a9b2b951aafb8dfd77825ba0d")
+        return $http.get(SettingsFactory.getERPServerBaseUrl() + "/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?name=" + trip_id + "&sid=" + SettingsFactory.getSid())
             .then(function (data) {
                 console.log(data.data.message.open[0]);
                 var tripIndex = -1;
@@ -167,7 +236,7 @@ function AppController($http, DocumentService) {
     // on date change
     mc.onDateChange = function () {
         var date = moment(mc.workingDate).format('YYYY-MM-DD');
-        $http.get("http://192.168.31.195:8080/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?from_date=" + date + "&to_date=" + date + "&sid=8af727cb91f67623029099363c736f5a9b2b951aafb8dfd77825ba0d")
+        $http.get(SettingsFactory.getERPServerBaseUrl() + "/api/method/flows.flows.doctype.vehicle_trip.vehicle_trip.get_trip_page?from_date=" + date + "&to_date=" + date + "&sid=" + SettingsFactory.getSid())
             .then(function (data) {
                 mc.openGatepassList = data.data.message.open;
                 mc.closedGatepassList = data.data.message.closed;
@@ -176,6 +245,13 @@ function AppController($http, DocumentService) {
     };
 
     mc.onDateChange();
+
+    mc.logout = () => {
+        var settings = SettingsFactory.get();
+        settings.sid = '';
+        SettingsFactory.set(settings);
+        $state.go('login');
+    };
 
 
 }

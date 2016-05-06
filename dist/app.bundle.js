@@ -1329,8 +1329,8 @@ webpackJsonp([0],[
 	        console.log("Hi from Login Function");
 	
 	        $scope.loginData = {
-	            username: 'Administrator',
-	            password: 'admin'
+	            username: '',
+	            password: ''
 	        };
 	    }
 	

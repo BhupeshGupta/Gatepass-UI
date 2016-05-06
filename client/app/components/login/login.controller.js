@@ -11,8 +11,8 @@ class LoginController {
         console.log("Hi from Login Function");
 
         $scope.loginData = {
-            username: 'Administrator',
-            password: 'admin'
+            username: '',
+            password: ''
         }
     }
 

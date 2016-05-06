@@ -35,7 +35,7 @@
                                                 <span class="input-label" ng-init="passwordInputType = 'password'">Password</span></label>
                                             <input type="{{passwordInputType}}" ng-model="loginData.password">
                                             <a class="button button-clear" style="padding-right: 15%" on-tap="passwordInputType = { 'password': 'text', 'text': 'password'}[passwordInputType];">
-                                                <i class="icon ion-ios-eye"></i>
+                                                <i ng-class="passwordInputType=='password'?'ion-eye-disabled':'ion-eye'"></i>
                                             </a>
                                         </div>
                                         <div class="item login_btn">

@@ -1,4 +1,5 @@
 function PumpFormController($scope, $mdDialog, $mdMedia, DocumentService) {
+    "ngInject";
     // for autocomplete pump
     this.showAdvanced = (ev) => {
         $mdDialog.show({

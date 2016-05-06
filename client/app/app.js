@@ -13,17 +13,20 @@ angular.module('app', [
 .config(stateConfig)
 
 .config(function ($mdDateLocaleProvider) {
+    "ngInject";
     $mdDateLocaleProvider.formatDate = function (date) {
         return moment(date).format('DD-MM-YYYY');
     };
 })
 
 .config(function ($httpProvider) {
+    "ngInject";
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     $httpProvider.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest';
 })
 
 .run(function ($rootScope, $state) {
+    "ngInject";
     $rootScope.$on('login:success', function () {
         $state.go('root');
     });
@@ -31,6 +34,7 @@ angular.module('app', [
 
 // UA & Error Interceptor
 .config(function ($httpProvider) {
+    "ngInject";
     var popUp = null;
     $httpProvider.interceptors.push(function ($injector, $q) {
         return {
@@ -149,6 +153,7 @@ function stateConfig($stateProvider, $urlRouterProvider, $compileProvider) {
 
 
 function AppController($http, DocumentService, SettingsFactory, $state) {
+    "ngInject";
     var mc = this;
 
     mc.settings = SettingsFactory.get();

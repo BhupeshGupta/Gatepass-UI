@@ -57,7 +57,6 @@ function NewVoucherController(DocumentService, $element) {
     };
 
 
-
     vm.searchVehicle = function (query) {
         return DocumentService.search('Transportation Vehicle', query, {}).then(function (data) {
             return data.data.results;

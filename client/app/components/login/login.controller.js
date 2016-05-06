@@ -1,5 +1,5 @@
 import angular from 'angular';
-
+/* @ngInject */
 class LoginController {
     constructor($state, UserService, SettingsFactory, $scope, $rootScope) {
         this.$state = $state;

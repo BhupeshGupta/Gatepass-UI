@@ -1,4 +1,5 @@
 import angular from 'angular';
+/*@ngInject*/
 class OpenGatepassController {
     constructor($scope, $mdDialog, $mdMedia, $timeout) {
 

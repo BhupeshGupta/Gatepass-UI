@@ -1,4 +1,5 @@
 function userService($http, SettingsFactory, $rootScope, $q) {
+    "ngInject";
     $rootScope.userLoaded = false;
 
     var factory = {

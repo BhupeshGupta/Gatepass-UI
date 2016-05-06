@@ -35,49 +35,49 @@
                     <div layout="row" layout-sm="column">
                         <div class="input_group ">
                             <label class="flex-35" for="FC19 ">FC19</label>
-                            <input placeholder="" type="number" ng-model="nvc.gatepass.items.FC19" name="itemsFc19" ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 || nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5)" />
+                            <input placeholder="FC19" min="0" type="number" ng-model="nvc.gatepass.items.FC19" name="itemsFc19" ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 || nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5)" />
                         </div>
                         <div class="input_group ">
                             <label class="flex-35" for="FC35">FC35</label>
-                            <input placeholder="" type="number" ng-model="nvc.gatepass.items.FC35" name="itemsFc35" ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 || nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5)">
+                            <input placeholder="FC35" min="0" type="number" ng-model="nvc.gatepass.items.FC35" name="itemsFc35" ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 || nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5)">
                         </div>
                     </div>
                     <div layout="row" layout-sm="column">
                         <div class="input_group">
                             <label class=" flex-35 " for="FC47 ">FC47.5</label>
-                            <input type="number" ng-model="nvc.gatepass.items.FC47" ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 || nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5)"> </div>
+                            <input type="number" placeholder="FC47.5" min="0" ng-model="nvc.gatepass.items.FC47" ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 || nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5)"> </div>
                         <div class="input_group">
                             <label class="flex-35" for="FClot47">FC47.5Lot</label>
-                            <input type="number" ng-model="nvc.gatepass.items.FC47_5" ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 ||nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5)">
+                            <input type="number" placeholder="FC47.5Lot" min="0" ng-model=" nvc.gatepass.items.FC47_5 " ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 ||nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5) ">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div layout="row" layout-sm="column" flex="100" class="detail_block2" ng-hide="!nvc.isCollapsed">
-            <div class="gd1_left" flex="50" layout-fill="">
-                <pump-form gatepass="nvc.gatepass"></pump-form>
+        <div layout="row " layout-sm="column " flex="100 " class="detail_block2 " ng-hide="!nvc.isCollapsed ">
+            <div class="gd1_left " flex="50 " layout-fill=" ">
+                <pump-form gatepass="nvc.gatepass "></pump-form>
             </div>
             <div class="md-block gd1_right ">
-                <div class="input_block input_50">
-                    <div layout="row" layout-sm="column">
+                <div class="input_block input_50 ">
+                    <div layout="row " layout-sm="column ">
                         <div class="input_group ">
-                            <label class="flex-35">EC19</label>
-                            <input placeholder="" type="number" ng-model="nvc.gatepass.items.EC19" ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 ||nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5)">
+                            <label class="flex-35 ">EC19</label>
+                            <input placeholder="EC19" min="0" type="number " ng-model="nvc.gatepass.items.EC19 " ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 ||nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5) ">
                         </div>
                         <div class="input_group ">
-                            <label class="flex-35" for="FC35">EC35</label>
-                            <input placeholder="" type="number" ng-model="nvc.gatepass.items.EC35" ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 ||nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5)">
+                            <label class="flex-35 " for="FC35 ">EC35</label>
+                            <input placeholder="EC35" min="0" type="number " ng-model="nvc.gatepass.items.EC35 " ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 ||nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5) ">
                         </div>
                     </div>
-                    <div layout="row" layout-sm="column">
-                        <div class="input_group">
-                            <label class=" flex-35 " for="FC47">EC47.5</label>
-                            <input type="number" ng-model="nvc.gatepass.items.EC47" ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 ||nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5)">
+                    <div layout="row " layout-sm="column ">
+                        <div class="input_group ">
+                            <label class=" flex-35 " for="FC47 ">EC47.5</label>
+                            <input type="number" placeholder="EC47.5" min="0" ng-model="nvc.gatepass.items.EC47 " ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 ||nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5) ">
                         </div>
-                        <div class="input_group">
-                            <label class="flex-35" for="FClot47">EC47.5Lot</label>
-                            <input type="number" ng-model="nvc.gatepass.items.EC47_5" ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 ||nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5)">
+                        <div class="input_group ">
+                            <label class="flex-35 " for="FClot47 ">EC47.5Lot</label>
+                            <input type="number " placeholder="EC47.5Lot" min="0" ng-model="nvc.gatepass.items.EC47_5 " ng-required="!(nvc.gatepass.items.FC19 || nvc.gatepass.items.FC35 || nvc.gatepass.items.FC47 || nvc.gatepass.items.FC47_5 ||nvc.gatepass.items.EC19 || nvc.gatepass.items.EC35 || nvc.gatepass.items.EC47 || nvc.gatepass.items.EC47_5) ">
                         </div>
                     </div>
                 </div>

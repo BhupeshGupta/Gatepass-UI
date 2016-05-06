@@ -2,6 +2,7 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import 'normalize.css';
 import Components from './components/components';
+import './style.scss'
 
 angular.module('app', [
     uiRouter,

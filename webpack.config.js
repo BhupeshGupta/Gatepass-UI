@@ -11,23 +11,27 @@ module.exports = {
                 test: /\.js$/,
                 exclude: [/app\/lib/, /node_modules/],
                 loader: 'ng-annotate!babel'
-            }
-            , {
+            },
+            {
                 test: /\.html$/,
                 loader: 'raw'
-            }
-            , {
+            },
+            {
                 test: /\.styl$/,
                 loader: 'style!css!stylus'
-            }
-            , {
+            },
+            {
                 test: /\.css$/,
                 loader: 'style!css'
-            }
-            , {
+            },
+            {
                 test: /\.scss$/,
                 loaders: ["style", "css", "sass"]
-      }
+            },
+            {
+                test: /\.(png|jpg|jpeg|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=100000'
+            }
     ]
     },
     plugins: [

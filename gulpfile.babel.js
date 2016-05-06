@@ -101,27 +101,29 @@ gulp.task('serve', () => {
 });
 
 
-gulp.task('watch', ['serve', 'watch-sass']);
+gulp.task('watch', ['serve'
+//                    , 'watch-sass'
+                   ]);
 
 
-gulp.task('watch-sass', function (done) {
-    gulp.watch('./client/app/style.scss', ['sass']);
-});
-
-gulp.task('sass', function (done) {
-    gulp.src('./client/app/style.scss')
-        .pipe(sass())
-        .on('error', sass.logError)
-        .pipe(gulp.dest('./client/app/style.css'))
-        .pipe(minifyCss({
-            keepSpecialComments: 0
-        }))
-        .pipe(rename({
-            extname: '.min.css'
-        }))
-        .pipe(gulp.dest('./client/app/'))
-        .on('end', done);
-});
+//gulp.task('watch-sass', function (done) {
+//    gulp.watch('./client/app/style.scss', ['sass']);
+//});
+//
+//gulp.task('sass', function (done) {
+//    gulp.src('./client/app/style.scss')
+//        .pipe(sass())
+//        .on('error', sass.logError)
+//        .pipe(gulp.dest('./client/app/style.css'))
+//        .pipe(minifyCss({
+//            keepSpecialComments: 0
+//        }))
+//        .pipe(rename({
+//            extname: '.min.css'
+//        }))
+//        .pipe(gulp.dest('./client/app/'))
+//        .on('end', done);
+//});
 
 gulp.task('component', () => {
     const cap = (val) => {

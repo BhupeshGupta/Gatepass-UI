@@ -751,7 +751,6 @@ webpackJsonp([0],[
 	        });
 	    };
 	}
-	
 	exports['default'] = NewVoucherController;
 	module.exports = exports['default'];
 

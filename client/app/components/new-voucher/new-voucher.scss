@@ -68,3 +68,8 @@ md-autocomplete[required="required"] {
     color: red;
     font-size: 18px;
 }
+form[name="newVocherForm"] {
+    button[disabled="disabled"] {
+        background: #ccc !important;
+    }
+}

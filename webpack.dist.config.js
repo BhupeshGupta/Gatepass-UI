@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var config = require('./webpack.config');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 config.output = {
     filename: '[name].bundle.js',
@@ -20,7 +21,20 @@ config.plugins = config.plugins.concat([
             //            // angular global variable, so we should keep it unchanged
             //            except: ['$super', '$', 'exports', 'require', 'angular']
             //        }
-            //    })
+            //    }),
+
+    new CopyWebpackPlugin(
+        [
+            {
+                from: 'client/assets',
+                to: path.resolve(config.output.path, 'assets')
+            }
+        ], {
+            // By default, we only copy modified files during
+            // a watch or webpack-dev-server build. Setting this
+            // to `true` copies all files.
+            copyUnmodified: true
+        })
 ]);
 
 module.exports = config;
